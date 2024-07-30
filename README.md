@@ -33,6 +33,9 @@ Specific works of importance to this repository are: <ref>[1](#ref1), [2](#ref2)
 
 If you use this software in your work, please cite the following: [CITATION](CITATION.cff)
 
+Detailed documentation can be found in the project page or in the application itself under the `HELP` 
+link at the bottom. [Documentation](https://insigneo.github.io/PyPeCT2S/)
+
 
 ## USAGE
 
