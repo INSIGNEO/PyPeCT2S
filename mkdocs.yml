@@ -1,0 +1,88 @@
+plugins:
+    - search
+    - offline
+    - privacy:
+        enabled: !ENV [CI, false]
+site_name: PyPeCT2S
+site_description: Pythonic Paediatric Computed Tomography to Strength
+site_author: George Allison
+nav:
+    - Home: index.md
+    - Installation: installation.md
+    - Usage: usage.md
+    - Customisation: customisation.md
+    - Troubleshooting: troubleshooting.md
+    - Changelog: changelog.md
+    - License: license.md
+repo_url: https://github.com/INSIGNEO/PyPeCT2S
+repo_name: PyPeCT2S GitHub
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      name: PyPeCT2S GitHub
+      link: https://github.com/INSIGNEO/PyPeCT2S
+    - icon: fontawesome/brands/linkedin
+      name: Author's LinkedIn
+      link: https://www.linkedin.com/in/george-h-allison/
+    - icon: fontawesome/brands/github-alt
+      name: Author's GitHub
+      link: https://github.com/HaivuUK
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - attr_list
+  - md_in_html
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+theme:
+    name: material
+    palette:
+        # Palette toggle for automatic mode
+        - media: "(prefers-color-scheme)"
+          toggle:
+              icon: material/brightness-auto
+              name: Switch to light mode
+
+        # Palette toggle for light mode
+        - media: "(prefers-color-scheme: light)"
+          scheme: default
+          primary: deep purple
+          accent: cyan
+          toggle:
+              icon: material/brightness-7
+              name: Switch to dark mode
+
+        # Palette toggle for dark mode
+        - media: "(prefers-color-scheme: dark)"
+          scheme: slate
+          primary: deep purple
+          accent: cyan
+          toggle:
+              icon: material/brightness-4
+              name: Switch to system preference
+    color_mode: auto
+    user_color_mode_toggle: true
+    highlightjs: true
+    hljs_languages:
+        - python
+    logo: images/INSIGNEO.png
+    favicon: images/INSIGNEO.png
+    icon:
+        previous: fontawesome/solid/angle-left
+        next: fontawesome/solid/angle-right
+    features:
+        - navigation.instant
+        - navigation.instant.progress
+        - navigation.tracking
+        - navigation.sections
+        - navigation.expand
+        - toc.integrate
+        - navigation.top
+        - search.highlight
+        - search.suggest
+        - header.autohide
+        - navigation.footer

@@ -1,0 +1,1253 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Pythonic Paediatric Computed Tomography to Strength">
+      
+      
+        <meta name="author" content="George Allison">
+      
+      
+      
+        <link rel="prev" href="installation.html">
+      
+      
+        <link rel="next" href="customisation.html">
+      
+      
+      <link rel="icon" href="../docs/images/INSIGNEO.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+    
+    
+      
+        <title>Usage - PyPeCT2S</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.3cba04c6.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#usage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="PyPeCT2S" class="md-header__button md-logo" aria-label="PyPeCT2S" data-md-component="logo">
+      
+  <img src="../docs/images/INSIGNEO.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyPeCT2S
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Usage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="cyan"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/INSIGNEO/PyPeCT2S" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PyPeCT2S GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="PyPeCT2S" class="md-nav__button md-logo" aria-label="PyPeCT2S" data-md-component="logo">
+      
+  <img src="../docs/images/INSIGNEO.png" alt="logo">
+
+    </a>
+    PyPeCT2S
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/INSIGNEO/PyPeCT2S" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PyPeCT2S GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Usage
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="usage.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Usage
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#file-model-input-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      File / Model / Input Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Software
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      Main Window
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Main Window">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Fields
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drop-down-menus-and-tabs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drop-down Menus and Tabs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkboxes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checkboxes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Window
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Links
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meshing-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meshing Tab
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Meshing Tab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#icem-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      ICEM Path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meshing-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meshing Options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#material-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Material Tab
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fem-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      FEM Tab
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FEM Tab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results Tab
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#landmark-determination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Landmark Determination
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Landmark Determination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculation-for-the-length-of-the-bone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculation for the Length of the Bone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-of-points-along-the-central-long-axis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension of Points Along the Central Long Axis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estimate-the-femoral-head-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estimate the Femoral Head Location
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-the-long-shaft-axis-of-the-bone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Find the Long Shaft Axis of the Bone
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stl-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      STL Checks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="STL Checks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-non-manifold-edges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Non-manifold edges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-multiple-bodies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Multiple Bodies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_non_uniform_scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      check_non_uniform_scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-for-faces-with-zero-area" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check for Faces with Zero Area
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-for-inverted-normals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check for Inverted Normals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-for-holes-in-the-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check for Holes in the Mesh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-for-duplicate-vertices-and-faces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check for Duplicate Vertices and Faces
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="customisation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Customisation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="troubleshooting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="changelog.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="license.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="usage">Usage</h1>
+<h2 id="file-model-input-requirements">File / Model / Input Requirements</h2>
+<p>You can start the process at any step by jumping to that tab.</p>
+<p>If you wish to start fresh you require the following files:</p>
+<ol>
+<li>
+<p>DICOM image scans contained in a <code>*.VTK</code> file.</p>
+<ul>
+<li>Bonemat presents some limitations on the size of VTK files it can process. Please be aware of this.</li>
+</ul>
+</li>
+<li>
+<p>Segmented 3D <code>*.STL</code> model of the bone. </p>
+<ul>
+<li><em><strong>It is important you check the quality of segmentation, meshing will fail 
+if there are external floating elements in the model.</strong></em></li>
+<li>The program will provide information about warnings or errors in the model. However, this is not exhaustive and 
+you should check the model yourself.</li>
+</ul>
+</li>
+<li>
+<p>Configuration file for material application, based on the specific CT scanner used.</p>
+<ul>
+<li>This is a <code>*.conf</code> file.</li>
+<li>If you do not have a configuration file, you can create one using Bonemat.</li>
+</ul>
+</li>
+</ol>
+<h2 id="running-the-software">Running the Software</h2>
+<p>The software can be launched by running the <code>PyPeCT2S.exe</code> file from release or by running the <code>PyPeCT2S.py</code> file 
+from source.</p>
+<p>Once you have launched the software you can run as many scripts as you like and stop at any point as output files are
+saved at each step (e.g. you can run meshing and material application and stop before running the FEM script).</p>
+<h3 id="main-window">Main Window</h3>
+<p>When the software is run, you will be presented with the main window which will look as follows.</p>
+<p align="center">
+  <img src="../docs/images/main-gui.png" alt="Image of the main gui in PyPeCT2S">
+</p>
+
+<p>This window present two paths, four drop-down menus, four tabs, a core count selection, two check boxes, a log window,
+and a list of links.</p>
+<h4 id="required-fields">Required Fields</h4>
+<p>There are two fields that should be filled in for all included scripts:</p>
+<ul>
+<li>STL Path: The path to the STL file.</li>
+<li>Save Path: The path to save the output files.</li>
+</ul>
+<p>These fields are used to process information required for certain functions to run such as rotation of the model,
+landmark determination, and key sizing of the entered bone.</p>
+<h4 id="drop-down-menus-and-tabs">Drop-down Menus and Tabs</h4>
+<p>The four drop-down menus are used to select the script you wish to run. 
+The four tabs are used to navigate those scripts. The scripts in these dropdowns are populated from the corresponding
+libs directories in the program files and are determined on launch.</p>
+<p>The tabs and the default included scripts are discussed in detail in the following sections.</p>
+<ul>
+<li><a href="#meshing-tab">Meshing Tab</a> section for more information on the Meshing tab.</li>
+<li><a href="#material-tab">Material Tab</a> section for more information on the Material tab.</li>
+<li><a href="#fem-tab">FEM Tab</a> section for more information on the FEM tab.</li>
+<li><a href="#results-tab">Results Tab</a> section for more information on the Results tab.</li>
+</ul>
+<h4 id="core-count">Core Count</h4>
+<p>The core count selection is used to determine the number of cores to use when running the scripts. </p>
+<p><em>Important to note:</em></p>
+<ul>
+<li>This does not determine the number of cores used by the software itself.</li>
+<li>It is strongly recommended to have at least 4 cores available for the software to run correctly. </li>
+<li>It is possible you will experience errors if you do not have enough cores.</li>
+<li>Do not assign all the cores on your machine to the scripts, as this will likely cause the software to crash.</li>
+</ul>
+<h4 id="checkboxes">Checkboxes</h4>
+<p>There are two checkboxes: </p>
+<ol>
+<li><code>Segmented with RAS Coordinate System</code>: This is used to indicate to the software that the model has been segmented 
+with the RAS coordinate system. And that it should rotate the model to the LPS coordinate system, so it can have
+material properties applied in Bonemat. If you need this on, keep it checked for all steps you run.<ul>
+<li>3D Slicer exports models in the LPS coordinate system.</li>
+<li>ITK Snap exports models in the RAS coordinate system.</li>
+</ul>
+</li>
+<li><code>Batch Mode</code>: This is used to indicate to the software that you wish to run the scripts in batch mode. This feature
+is not currently in the distributed version of the software. Please see the <a href="index.html#contact">contact section</a> if you
+require this feature.</li>
+</ol>
+<h4 id="log-window">Log Window</h4>
+<p>The log window is used to display information about the scripts as they run. This can be used to check for errors or
+warnings that may have occurred during the script run.</p>
+<h4 id="links">Links</h4>
+<p>The links are used to provide information about the software and the authors.</p>
+<p>If you require help the HELP link will take you to the documentation.</p>
+<h3 id="meshing-tab">Meshing Tab</h3>
+<p>When selecting the default meshing script, you will be presented with the following window.</p>
+<p align="center">
+  <img src="../docs/images/mesh-tab.png" alt="Image of the meshing tab in PyPeCT2S">
+</p>
+
+<p>The meshing tab is used to run the meshing script. This script will take the <code>*.STL</code> file and create a mesh for running 
+FEM simulations. The meshing script will output a <code>*.cdb</code> file which can be used in ANSYS. It is recommended to only
+use one core for this script as using multiple cores takes longer without much benefit.</p>
+<p>Once you are ready to mesh you can press the <code>Mesh STL File</code> button. This will start the meshing process and output the
+<code>*.cdb</code> file to the save path you have selected.</p>
+<p>Before the meshing starts the software will check the STL file for any errors. If anything is found it will present a 
+list of errors and warnings to you. If the meshing fails you should check these to see what may have caused the issue.</p>
+<h4 id="icem-path">ICEM Path</h4>
+<p>Due to limitations with ICEM CFD, the meshing script requires a path to the ICEM CFD executable. To make this easier
+for the user the software will attempt to find the executable for you by checking standard paths when the <code>Auto Find</code>
+button is clicked. If it cannot find the executable, you will be told, and required to enter the path manually. This
+can be done through the <code>Browse</code> button.</p>
+<h4 id="meshing-options">Meshing Options</h4>
+<p>The meshing parameters for this script are <code>Project Name</code> and <code>Max Element Size</code>.</p>
+<ol>
+<li><code>Project Name</code>: This is the name of the file that will be output from ICEM CFD and then APDL.</li>
+<li><code>Max Element Size</code>: This is the maximum element size for the mesh. This is used to determine the size of the elements.<ul>
+<li>The smaller the element size, the more elements there will be in the mesh.</li>
+<li>The larger the element size, the fewer elements there will be in the mesh.</li>
+<li>The element size should be determined based on the size of the bone and the resolution of the scan.</li>
+</ul>
+</li>
+</ol>
+<h3 id="material-tab">Material Tab</h3>
+<p>When selecting the default material script, you will be presented with the following window.</p>
+<p align="center">
+  <img src="../docs/images/mat-tab.png" alt="Image of the material tab in PyPeCT2S">
+</p>
+
+<p>The material tab is used to run the material application script. This script utilises the command line interface for
+Bonemat to apply material properties to the mesh without needing to open the Bonemat GUI.</p>
+<p>STL Path is not required for this script, as the script will use the <code>*.cdb</code> file output from the meshing script.
+However, the Save Path is required to save the output <code>*.cdb</code> file.</p>
+<p>This script will take three files to apply the material properties to the mesh. 
+The files required are the <code>*.conf</code> file, the <code>*.cdb</code> file, and the <code>*.VTK</code> file. The script will output a <code>*.cdb</code> file 
+with the material properties applied.</p>
+<p>This file can then be used in the FEM script to run the simulation.</p>
+<h3 id="fem-tab">FEM Tab</h3>
+<p>When selecting the default FEM script, you will be presented with the following window.</p>
+<p align="center">
+  <img src="../docs/images/fem-tab.png" alt="Image of the FEM tab in PyPeCT2S">
+</p>
+
+<p>The FEM tab is used to run the FEM script. This script will take the <code>*.cdb</code> file with material properties and run a 
+simulation in ANSYS APDL. The script will output as many <code>*.db</code> files as required with the results of the simulation.
+Additionally, the script can take previously prepared files saved as <code>*.db</code> files and run the simulation on those.</p>
+<p>The FEM script utilises automatic landmark determination to determine the orientation of the bone and the location of
+the femoral head. This is used to apply the boundary conditions to the bone. If you have landmark files you can
+use these instead. The program will not determine landmark points automatically if landmark files are present.</p>
+<p>Automatic landmark determination is specific to paediatric femur models, if you do not have a paediatric femur model 
+you should determine your landmarks yourself and make sure the files are accessible for the program. This is covered
+further in the <a href="#landmark-determination">Landmark Determination</a> section.</p>
+<p>It is recommended to use multiple cores for this script as it can take a long time to run the simulation. 4 cores is 
+recommended if you have plenty available. 2 cores is a good reduction in time against 1 core.</p>
+<p>Once all parameters have been set you can press the <code>FEM Analysis</code> button to start the simulation.</p>
+<h4 id="files">Files</h4>
+<p>The FEM script has two main inputs required:</p>
+<ol>
+<li><code>FEM File Directory</code>: This is the path to the folder where your <code>*.cdb</code> file(s) are stored.</li>
+<li><code>Filename</code>: This is the name of the file that will be used for the simulation, incase there are multiple files in 
+the directory.</li>
+</ol>
+<h4 id="parameters">Parameters</h4>
+<p>The remaining fields are used to set the parameters that define the boundary conditions. These are:</p>
+<ul>
+<li><code>Force</code>: The force applied to the bone. Measured in Newtons.</li>
+<li><code>Angle Increment</code>: The angle increment for the simulation. This is used to determine the number of steps in 
+the simulation. Measured in degrees.</li>
+<li><code>Manual</code>: Specific orientation. 1 - Solves only one specific orientation, 2 - Solves all orientations.</li>
+<li><code>Percentage of Remaining Segment</code>: The percentage of the segment to apply force. Measured in percentage.</li>
+<li><code>Proption of mid-segment to apply force</code>: The proportion of the mid-segment to apply force. Measured in percentage.</li>
+</ul>
+<h3 id="results-tab">Results Tab</h3>
+<p>When selecting the default results script, you will be presented with the following window.</p>
+<p align="center">
+  <img src="../docs/images/res-tab.png" alt="Image of the results tab in PyPeCT2S">
+</p>
+
+<p>The results tab is used to view the results of the FEM simulation. This script has two different outputs that use
+different elements saved from the FEM script.</p>
+<ul>
+<li><code>Numerical Results Processing</code>: This script will take the <code>*.dat</code> files output from the FEM script and process them
+to provide numerical results and graphs showing failure and maximum 1<sup>st</sup> and 3<sup>rd</sup> principal strains 
+against defined failure limits.</li>
+<li><code>ANSYS Contour Plots</code>: This script will take the <code>*.db</code> files output from the FEM script and process them to provide
+contour plots of the results.</li>
+</ul>
+<p>The <code>Numerical Results Processing</code> script will output a <code>*.csv</code> file with the numerical results and a <code>*.png</code> file with
+the graphs. The <code>ANSYS Contour Plots</code> script will output a <code>*.png</code> file with the contour plots.</p>
+<h2 id="additional-features">Additional Features</h2>
+<p>Below will be a list of additional features that are included in the software. But are not directly visible to users.</p>
+<h3 id="landmark-determination">Landmark Determination</h3>
+<p>These extra features are used to determine the landmarks of the bone. This is used to determine the orientation of the
+bone and the location of the femoral head.</p>
+<p>These are specific to paediatric femur models, if you do not have a paediatric femur model you should determine your 
+landmarks yourself and make sure the files are accessible for the program.</p>
+<p>If landmark files are present the program will not determine landmark points automatically.</p>
+<p>Landmark files should be in the same working directory as the <code>*.cdb</code> file you are using in a folder called <code>landmarks</code>.</p>
+<p>Landmark files should be in a plain text format with the following structure:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>x, y, z
+</code></pre></div>
+<p>or </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>x
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>y
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>z
+</code></pre></div>
+<p>There should be a file for each landmark point. The files should be named as follows:</p>
+<ul>
+<li><code>RPOss.txt</code>: The proximal point of the bone.</li>
+<li><code>RDOss.txt</code>: The distal point of the bone.</li>
+<li><code>RMShaft.txt</code>: The center of mass of the bone.</li>
+</ul>
+<h4 id="calculation-for-the-length-of-the-bone">Calculation for the Length of the Bone</h4>
+<p>Purpose: Calculate the length of the bone by finding the maximum distance between vertices.</p>
+<p>Mathematical Operation:</p>
+<p>Let <span class="arithmatex">\(( \mathbf{v}_i )\)</span> be the vertices of the mesh.</p>
+<p>Find the farthest vertex <span class="arithmatex">\(\mathbf{v}_{\text{far}}\)</span> from an arbitrary starting vertex <span class="arithmatex">\(( \mathbf{v}_0 )\)</span>: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{far}} = \arg\max{\mathbf{v}_i} |\mathbf{v}_0 - \mathbf{v}_i|
+\]</div>
+<p>Find the maximum distance from <span class="arithmatex">\(\mathbf{v}_{\text{far}}\)</span>: </p>
+<div class="arithmatex">\[
+\text{max distance} = \max{\mathbf{v}_i} |\mathbf{v}_{\text{far}} - \mathbf{v}_i|
+\]</div>
+<h4 id="extension-of-points-along-the-central-long-axis">Extension of Points Along the Central Long Axis</h4>
+<p>Purpose: Extend the distal and proximal points along the central axis by a given percentage of the bone length.</p>
+<p>Mathematical Operation:</p>
+<p>Calculate the central axis vector: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{axis}} = \mathbf{v}_{\text{distal}} - \mathbf{v}_{\text{proximal}}
+\]</div>
+<p>Calculate the bone length <span class="arithmatex">\(L\)</span>: </p>
+<div class="arithmatex">\[
+L = \text{bone length}
+\]</div>
+<p>Calculate the extension length: </p>
+<div class="arithmatex">\[
+L_{\text{ext}} = L \times \left(\frac{\text{percentage}}{100}\right)
+\]</div>
+<p>Normalize the central axis vector: </p>
+<div class="arithmatex">\[
+\mathbf{d} = \frac{\mathbf{v}_{\text{axis}}}{L}
+\]</div>
+<p>Extend the distal and proximal points: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{distal}} = \mathbf{v}_{\text{distal}} + \mathbf{d} \times L_{\text{ext}}
+\]</div>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{proximal}} = \mathbf{v}_{\text{proximal}} - \mathbf{d} \times L_{\text{ext}}
+\]</div>
+<h4 id="estimate-the-femoral-head-location">Estimate the Femoral Head Location</h4>
+<p>Purpose: Estimate the location of the femoral head based on the proximal, distal, and center of mass points.</p>
+<p>Mathematical Operation:</p>
+<p>Calculate the shaft axis: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{shaft}} = \mathbf{v}_{\text{proximal}} - \mathbf{v}_{\text{distal}}
+\]</div>
+<p>Calculate the vector to the center of mass: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{com}} = \mathbf{v}_{\text{com}} - \mathbf{v}_{\text{proximal}}
+\]</div>
+<p>Estimate the distance to the femoral head: </p>
+<div class="arithmatex">\[
+d_{\text{head}} = |\mathbf{v}_{\text{shaft}}| \times \left(\frac{\text{percentage}}{100}\right)
+\]</div>
+<p>Calculate a perpendicular vector: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\perp} = \mathbf{v}_{\text{shaft}} \times \mathbf{v}_{\text{com}}
+\]</div>
+<p>Calculate the direction to the femoral head: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{head_dir}} = \mathbf{v}_{\perp} \times \mathbf{v}_{\text{shaft}}
+\]</div>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{head_dir_norm}} = \frac{\mathbf{v}_{\text{head_dir}}}{|\mathbf{v}_{\text{head_dir}}|}
+\]</div>
+<p>Estimate the femoral head location: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{head}} = \mathbf{v}_{\text{proximal}} - \mathbf{v}_{\text{head_dir_norm}} \times d{_\text{head}}
+\]</div>
+<h4 id="find-the-long-shaft-axis-of-the-bone">Find the Long Shaft Axis of the Bone</h4>
+<p>Purpose: Find the long shaft axis of the bone and estimate the femoral head location.</p>
+<p>Mathematical Operation:
+Calculate the center of mass: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{com}} = \frac{1}{N} \sum{i=1}^{N} \mathbf{v}_i
+\]</div>
+<p>Calculate the covariance matrix: </p>
+<div class="arithmatex">\[
+\mathbf{C} = \frac{1}{N-1} \sum_{i=1}^{N} (\mathbf{v}_i - \mathbf{v}_{\text{com}})(\mathbf{v}_i - \mathbf{v}_{\text{com}})^T
+\]</div>
+<p>Calculate the principal axes (eigenvectors): </p>
+<div class="arithmatex">\[
+\mathbf{C} \mathbf{e}_i = \lambda_i \mathbf{e}_i
+\]</div>
+<p>The shaft axis is the eigenvector with the largest eigenvalue: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{shaft}} = \mathbf{e}{max}(\lambda)
+\]</div>
+<p>Project vertices onto the shaft axis: </p>
+<div class="arithmatex">\[
+\mathbf{p}_i = (\mathbf{v}_i - \mathbf{v}_{\text{com}}) \cdot \mathbf{v}_{\text{shaft}}
+\]</div>
+<p>Find the proximal and distal points: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{proximal}} = \mathbf{v}_{min}(\mathbf{p}_i)
+\]</div>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{distal}} = \mathbf{v}_{max}(\mathbf{p}_i)
+\]</div>
+<p>Estimate the femoral head location and extend points along the central axis as described above.</p>
+<h3 id="stl-checks">STL Checks</h3>
+<p>To try and ensure the quality of the STL file, the software will run a series of checks on the file before running the
+meshing script. These checks are not exhaustive, and you should check the file yourself. The checks are as follows:</p>
+<h4 id="check-non-manifold-edges">Check Non-manifold edges</h4>
+<p><em>Purpose:</em> Checks for edges shared by more than two faces, indicating non-manifold edges.  </p>
+<p><em>Description:</em> This function iterates through all the faces of the STL mesh and counts the occurrences of each edge. 
+Edges shared by more than two faces are considered non-manifold.  </p>
+<h4 id="check-multiple-bodies">Check Multiple Bodies</h4>
+<p><em>Purpose:</em> Checks for multiple bodies in the STL file by identifying unconnected components.  </p>
+<p><em>Description:</em> This function uses a depth-first search (DFS) algorithm to identify unconnected components in the mesh. 
+Each unconnected component is considered a separate body.  </p>
+<h4 id="check_non_uniform_scaling">check_non_uniform_scaling</h4>
+<p><em>Purpose:</em> Checks for non-uniform scaling in the STL mesh.</p>
+<p><em>Description:</em> This function calculates the bounding box of the mesh and checks if the dimensions 
+are uniformly scaled. Non-uniform scaling is detected if the dimensions are not proportional.  </p>
+<h4 id="check-for-faces-with-zero-area">Check for Faces with Zero Area</h4>
+<p><em>Purpose:</em> Checks for degenerate faces (faces with zero area).  </p>
+<p><em>Description:</em> This function iterates through all the faces of the STL mesh and calculates the area of each face. 
+Faces with zero area are considered degenerate.  </p>
+<h4 id="check-for-inverted-normals">Check for Inverted Normals</h4>
+<p><em>Purpose:</em> Checks if normals are consistently oriented.  </p>
+<p><em>Description:</em> This function calculates the center of the mesh and checks if the normals of the faces 
+generally point outward. A simple heuristic is used to determine the orientation of the normals.  </p>
+<h4 id="check-for-holes-in-the-mesh">Check for Holes in the Mesh</h4>
+<p><em>Purpose:</em> Checks for holes by ensuring each edge is shared by exactly two faces.  </p>
+<p><em>Description:</em> This function iterates through all the faces of the STL mesh and counts the occurrences of each edge. 
+Edges shared by only one face are considered holes.  </p>
+<h4 id="check-for-duplicate-vertices-and-faces">Check for Duplicate Vertices and Faces</h4>
+<p><em>Purpose:</em> Checks for duplicate vertices and faces.</p>
+<p><em>Description:</em> This function identifies and counts duplicate vertices and faces in the STL mesh.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="installation.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Installation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="customisation.html" class="md-footer__link md-footer__link--next" aria-label="Next: Customisation">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Customisation
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/INSIGNEO/PyPeCT2S" target="_blank" rel="noopener" title="PyPeCT2S GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/in/george-h-allison/" target="_blank" rel="noopener" title="Author&#39;s LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/HaivuUK" target="_blank" rel="noopener" title="Author&#39;s GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.sections", "navigation.expand", "toc.integrate", "navigation.top", "search.highlight", "search.suggest", "header.autohide", "navigation.footer"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="../docs/javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

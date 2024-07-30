@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: PyPeCT2S
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: George
+    family-names: Allison
+    email: GHAllison1@sheffield.ac.uk
+    affiliation: The University of Sheffield
+    orcid: 'https://orcid.org/0000-0002-6213-0180'
+repository-code: 'https://insigneo.github.io/PyPeCT2S/'
+abstract: >-
+  PyPeCT2S is an open-source automation software GUI for
+  computed tomography to strength (CT2S) based, written in
+  Python 3.11 and Qt6. It is released under the GPL v3
+  software licence.  See
+  https://github.com/INSIGNEO/PyPeCT2S for the git
+  repository and https://insigneo.github.io/PyPeCT2S/ and
+  https://ct2s.sheffield.ac.uk/ for the documentation.
+keywords:
+  - finite element analysis
+  - biomechanics
+  - automation
+  - bone
+  - python
+license: GPL-3.0-or-later
+version: 1.0.0
+date-released: '2024-07-30'
