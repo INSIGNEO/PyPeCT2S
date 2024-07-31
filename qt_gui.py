@@ -353,6 +353,11 @@ class MyApplication(QWidget):
             background-color: #003C73;
         }}
         
+        QPushButton:disabled {{
+            background-color: #808080;
+            color: #FFF;
+        }}
+        
         QComboBox {{
             border: 1px solid #808080;
             border-radius: 4px;

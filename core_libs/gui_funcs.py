@@ -24,7 +24,7 @@ ________________________________________________________________________________
 """
 
 from PyQt6.QtWidgets import QApplication, QLabel, QPushButton, QLineEdit, QDoubleSpinBox, QSpinBox, QVBoxLayout, \
-    QHBoxLayout, QFileDialog, QComboBox
+    QHBoxLayout, QFileDialog, QComboBox, QCheckBox
 import logging
 import numpy as np
 from concurrent.futures import ThreadPoolExecutor
@@ -123,6 +123,7 @@ def create_gui_element(element_info, signal_slots=None):
             return QLabel(element_info.get('text', ''))
         case 'QPushButton':
             button = QPushButton(element_info.get('text', ''))
+            button.setObjectName(element_info.get('obname', ''))
             if signal_slots and 'clicked' in signal_slots:
                 button.clicked.connect(signal_slots['clicked'])
             return button
@@ -294,11 +295,19 @@ def gen_thread_worker(func, active_cores):
     :param func: The function to run in the thread worker.
     :param active_cores: The number of active cores.
     """
+
     work_cores = max(1, int(os.cpu_count()) - (int(active_cores) + 1)) # Calculate the number of worker cores, return at least 1
-    throb_core = ThreadPoolExecutor(max_workers=1)  # Throbber executor
-    executer = ThreadPoolExecutor(max_workers=(int(work_cores)))
+    executer = ThreadPoolExecutor(max_workers=int(work_cores))  # Create a thread executor
+    throb_core = ThreadPoolExecutor(max_workers=1)
+
+    main_window = QApplication.instance().main_window  # Get the main window
+    input_widgets = main_window.findChildren((QLineEdit, QDoubleSpinBox, QSpinBox, QComboBox, QPushButton, QCheckBox))  # Find all input widgets
+
+    for widget in input_widgets:
+        widget.setEnabled(False)
+
     try:
-        throb_core.submit(throbbing(QApplication.instance().main_window))  # Start the throbber
+        throb_core.submit(throbbing(main_window))  # Start the throbber
         future = executer.submit(func)  # Submit the function to the executor
 
         def callback(future):
@@ -307,11 +316,15 @@ def gen_thread_worker(func, active_cores):
             except Exception as e:
                 logging.error(f"Error in thread worker function: {e}")  # Log the error
             finally:
-                throbbing(QApplication.instance().main_window)  # Ensure the throbber stops
+                throbbing(main_window)  # Ensure the throbber stops
+                for widget in input_widgets:
+                    widget.setEnabled(True)
 
         future.add_done_callback(callback)  # Add the callback to the future
     except Exception as e:
         logging.error(f"Error starting thread worker: {e}")  # Log the error
+        for widget in input_widgets:
+            widget.setEnabled(True)
     finally:
         throb_core.shutdown(wait=False)  # Shutdown the throbber executor
         executer.shutdown(wait=False)  # Shutdown the executor

@@ -454,6 +454,14 @@ def run_icem_apdl():
     except Exception as e:
         print(f'Error: {e}\n ANSYS ICEM has failed to run please check you have files in the correct location')
 
+    if temp_file:
+        try:
+            os.remove(temp_file.name)
+        except OSError:
+            pass
+        except Exception as e:
+            print(f'Error deleting temporary file: {e}')
+
     try:
         apdl_mesh()
     except Exception as e:
