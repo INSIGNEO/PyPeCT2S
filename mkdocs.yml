@@ -13,7 +13,7 @@ nav:
     - Customisation: customisation.md
     - Troubleshooting: troubleshooting.md
     - Changelog: changelog.md
-    - License: license.md
+    - License: doc-lcns.md
 repo_url: https://github.com/INSIGNEO/PyPeCT2S
 repo_name: PyPeCT2S GitHub
 extra:
