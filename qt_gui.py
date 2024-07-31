@@ -160,10 +160,9 @@ class MyApplication(QWidget):
         bm_rot_layout.addWidget(self.bm_rot_check)
 
         # INSIGNEO Label
-        help_doc_path = os.path.join(self.application_path, 'docs/index.html')
         INSGNO_layout = QHBoxLayout()
         Insigneo_label = QLabel()
-        Insigneo_label.setText(f'<a href="file:///{help_doc_path}">HELP</a> | <a href="https://www.sheffield.ac.uk">University of Sheffield</a> | <a href="https://www.sheffield.ac.uk/insigneo">INSIGNEO Institute</a> | <a href="https://ct2s.insigneo.org">CT2S</a>')
+        Insigneo_label.setText(f'<a href="https://insigneo.github.io/PyPeCT2S/">HELP</a> | <a href="https://www.sheffield.ac.uk">University of Sheffield</a> | <a href="https://www.sheffield.ac.uk/insigneo">INSIGNEO Institute</a> | <a href="https://ct2s.insigneo.org">CT2S</a>')
         Insigneo_label.setOpenExternalLinks(True)
         Insigneo_label.setAlignment(Qt.AlignmentFlag.AlignRight)
 
