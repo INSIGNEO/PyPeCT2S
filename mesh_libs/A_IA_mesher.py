@@ -454,7 +454,7 @@ def run_icem_apdl():
     except Exception as e:
         print(f'Error: {e}\n ANSYS ICEM has failed to run please check you have files in the correct location')
 
-    if temp_file:
+    if gui_ins.bm_rot and temp_file:
         try:
             os.remove(temp_file.name)
         except OSError:

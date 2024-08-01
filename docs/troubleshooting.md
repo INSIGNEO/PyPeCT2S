@@ -24,6 +24,15 @@ Things to check for:
 - STL integrity - Make sure your STL file is correct, not corrupted and has no visible issues.
 - Mesh errors - Make sure you have gone over your mesh carefully and there are no errors like holes or broken surfaces.
 
+### Unable to locate filename `XXXXXXXX.xxx`
+
+This problem is often related to the case of the filename. The program is case-sensitive, however windows is not when
+saving files. This means if there is alreadt a file with the same name but different case, the file will not save
+correctly and the program will not be able to locate it; as it is looking for the exact case.
+
+e.g. `filename.stl` and `FileName.stl` are two different files to the program. But windows will save them as the 
+same file. Giving preference to the exist file saved.
+
 ## Material Application
 
 If you're having trouble with your material application, try the following:
