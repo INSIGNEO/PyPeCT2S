@@ -10,6 +10,9 @@ authors:
     email: GHAllison1@sheffield.ac.uk
     affiliation: The University of Sheffield
     orcid: 'https://orcid.org/0000-0002-6213-0180'
+identifiers:
+  - type: doi
+    value: 10.6084/m9.figshare.26425591
 repository-code: 'https://insigneo.github.io/PyPeCT2S/'
 abstract: >-
   PyPeCT2S is an open-source automation software GUI for
@@ -26,5 +29,5 @@ keywords:
   - bone
   - python
 license: GPL-3.0-or-later
-version: 1.0.0
-date-released: '2024-07-30'
+version: 1.0.1
+date-released: '2024-07-31'

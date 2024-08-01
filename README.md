@@ -11,6 +11,9 @@
 </h2>
 
 <p align="center">
+  <a href="https://figshare.com/articles/software/PyPeCT2S/26425591">
+    <img src="https://img.shields.io/badge/DOI-10.6084/m9.figshare.26425591-brightgreen" alt="DOI">
+  </a>
   <a href="https://www.sheffield.ac.uk">
     <img src="https://img.shields.io/badge/-The%20University%20of%20Sheffield-blue.svg?colorA=ffffff&colorB=009fe3&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAMAAAAolt3jAAABsFBMVEUAAABmZplVVYBLPHheUYZJPXlSR3pCOnNgWIdoYI9FPnVMQXc0JGM0KmhEOXI0MW8xMW2Ph6yYkrOWj6%2BOiayinLqWkbIcWJkdWJezrsW2sciclrWmoL0cWpkbXJuCfqQVba4Vba2tqsKBgKWXkbGgm7ioo7%2Bln7umobyppcClob0RdrgSd7ikoLuXkbEeeKwieqmYkrKkn7sAneAAn%2BMBnN8Dn%2BIEj9IEkNQEoOMFi88GicwHnuAInuAVaqkVgrEWa6sWiskYj84ek88mk8wmqOInqOIqhrA4qd45qd87kaA8q988q%2BA9qN0%2Fk51Aqd1CqdxCqd1JnqtNnc9OnKVPnItSmsZUmqZVlsFVnYZVns1bst9ds99ftN9isNtitN9joa1msdtnveZqoaRqrNZqvuZsrdZvk2lylWR0nKZ2oJx%2BfKOBf6WEn5eGr3iIr3eduNWfmbifmrifudWim6mjnKmloLymrz2psTuuqb6uqsOwq8C0taG2tqS4tqy4tra6uTC6ui6%2FsCK%2FsCPBvdHDv9LFwtfGwtjOy9rPzdvUlaHmkpb%2B%2FPz%2B%2Fv7%2F%2FPz%2F%2F%2F9OZpcfAAAAM3RSTlMABQYRExUZHyAgJS8xMTFTVFleZmiJkpOTmp2oqba9wsTFxcfO0dPX3OLj5%2Bf19v39%2Fv4kncL4AAAAvElEQVR4AWNgYBIQV9Q20NdRkOBnZGBg4DExTQ9taIzMMDbhA3PdzMqbmyosXaHc4kCvvHy%2FgAIINzElvL%2B%2FvzcoLQ7E5bX1TOhq624P8bDhBnLZTEwye%2Fr7%2BpNNTFgYgMApJreuprY%2BK94RyOGSlEv19XZx9vFPkpViZ1BRZ7WKdq%2Bsto%2B1ZtZQYhAp1FS2iCopDTaX1yoSZmDgkNHrsAuLcOjUleZkAAGxqtbsnJYyUQYoEFIzMlQVBLEA%2FZgsl9iPrB4AAAAASUVORK5CYII%3D" alt="TUoS">
   </a>
