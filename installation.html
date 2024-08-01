@@ -52,6 +52,8 @@
       
     
     
+      <link rel="stylesheet" href="stylesheets/img-ani.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -539,33 +541,64 @@ can be found in <code>C:\Program Files\BIC Software\Bonemat\bin\BonematCLI.exe</
 <ul>
 <li>Open a terminal or command prompt.</li>
 <li>Navigate to the directory where you want to clone the repository.</li>
-<li>Run the following command to clone the repository: <code>git clone https://github.com/HaivuUK/PyPeCT2S.git</code></li>
+<li>Run the following command to clone the repository: </li>
 </ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/INSIGNEO/PyPeCT2S.git
+</span></code></pre></div>
 </li>
 <li>
 <p>Change into the project directory:</p>
-<ul>
-<li><code>cd PyPeCT2S</code></li>
-</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>PyPeCT2S
+</span></code></pre></div>
 </li>
 <li>
 <p>Set Up a Virtual Environment:<br />
    It is recommended to use a virtual environment to manage dependencies.</p>
 <ul>
-<li>Create a virtual environment:
-   <code>python -m venv venv</code><ul>
-<li>Activate the virtual environment:<ul>
-<li>On Windows: <code>venv\Scripts\activate</code>
-   On macOS/Linux: <code>source venv/bin/activate</code></li>
+<li>Create a virtual environment:</li>
 </ul>
-</li>
-<li>Install the Required Packages:  </li>
-<li>Ensure you have pip installed and updated: <code>python -m pip install --upgrade pip</code></li>
-<li>Install the required packages from the requirements.txt file: <code>pip install -r requirements.txt</code></li>
-<li>Verify the Installation:</li>
-<li>Check that all required packages are installed correctly by running: <code>pip list</code></li>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+</span></code></pre></div>
+<ul>
+<li>Activate the virtual environment:</li>
 </ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">macOS/Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>venv\Scripts\activate
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<ul>
+<li>Ensure you have pip installed and updated: </li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+</span></code></pre></div>
+<ul>
+<li>Upgrade setuptools:</li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>setuptools
+</span></code></pre></div>
+<ul>
+<li>Install the required packages from the requirements.txt file: </li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span></code></pre></div>
+<ul>
+<li>Verify the Installation by checking that all required packages are installed correctly: </li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pip<span class="w"> </span>list
+</span></code></pre></div>
 </li>
+<li>
+<p>Install the latest Microsoft Visual C++ Redistributable if you are using Windows:  </p>
+<ul>
+<li>Download and install the latest version of the Microsoft Visual C++ Redistributable from the <a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">Microsoft website</a>.</li>
 </ul>
 </li>
 <li>
@@ -579,11 +612,20 @@ can be found in <code>C:\Program Files\BIC Software\Bonemat\bin\BonematCLI.exe</
 </li>
 <li>Bonemat:<ul>
 <li>Download and install the Bonemat CLI executable.</li>
-<li>Place the BonematCLI.exe in the bonemat/ directory.</li>
+<li>Create a directory named <code>bonemat/</code> in the project directory.</li>
+<li>Place the BonematCLI.exe in the <code>bonemat/</code> directory.</li>
 <li>Ensure you have the rolling version of Bonemat available on your system.</li>
 </ul>
 </li>
 </ul>
+</li>
+<li>
+<p>Run the Software:</p>
+<ul>
+<li>Run the software by executing the following command in the terminal:</li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>python<span class="w"> </span>PyPeCT2S.py
+</span></code></pre></div>
 </li>
 </ol>
 
@@ -603,6 +645,8 @@ can be found in <code>C:\Program Files\BIC Software\Bonemat\bin\BonematCLI.exe</
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -708,7 +752,7 @@ can be found in <code>C:\Program Files\BIC Software\Bonemat\bin\BonematCLI.exe</
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.sections", "navigation.expand", "toc.integrate", "navigation.top", "search.highlight", "search.suggest", "header.autohide", "navigation.footer"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.sections", "navigation.expand", "toc.integrate", "navigation.top", "search.highlight", "search.suggest", "header.autohide", "navigation.footer", "content.tabs.link", "content.code.copy"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="assets/javascripts/bundle.fe8b6f2b.min.js"></script>
