@@ -16,7 +16,7 @@
         <link rel="prev" href="installation.html">
       
       
-        <link rel="next" href="customisation.html">
+        <link rel="next" href="add-feats.html">
       
       
       <link rel="icon" href="images/INSIGNEO.png">
@@ -533,154 +533,30 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#additional-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      Additional Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Additional Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#landmark-determination" class="md-nav__link">
-    <span class="md-ellipsis">
-      Landmark Determination
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Landmark Determination">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#calculation-for-the-length-of-the-bone" class="md-nav__link">
-    <span class="md-ellipsis">
-      Calculation for the Length of the Bone
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#extension-of-points-along-the-central-long-axis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Extension of Points Along the Central Long Axis
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#estimate-the-femoral-head-location" class="md-nav__link">
-    <span class="md-ellipsis">
-      Estimate the Femoral Head Location
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#find-the-long-shaft-axis-of-the-bone" class="md-nav__link">
-    <span class="md-ellipsis">
-      Find the Long Shaft Axis of the Bone
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stl-checks" class="md-nav__link">
-    <span class="md-ellipsis">
-      STL Checks
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="STL Checks">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#check-non-manifold-edges" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check Non-manifold edges
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-multiple-bodies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check Multiple Bodies
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check_non_uniform_scaling" class="md-nav__link">
-    <span class="md-ellipsis">
-      check_non_uniform_scaling
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-for-faces-with-zero-area" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check for Faces with Zero Area
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-for-inverted-normals" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check for Inverted Normals
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-for-holes-in-the-mesh" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check for Holes in the Mesh
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-for-duplicate-vertices-and-faces" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check for Duplicate Vertices and Faces
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="add-feats.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Additional Features
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -967,158 +843,6 @@ contour plots of the results.</li>
 </ul>
 <p>The <code>Numerical Results Processing</code> script will output a <code>*.csv</code> file with the numerical results and a <code>*.png</code> file with
 the graphs. The <code>ANSYS Contour Plots</code> script will output a <code>*.png</code> file with the contour plots.</p>
-<h2 id="additional-features">Additional Features</h2>
-<p>Below will be a list of additional features that are included in the software. But are not directly visible to users.</p>
-<h3 id="landmark-determination">Landmark Determination</h3>
-<p>These extra features are used to determine the landmarks of the bone. This is used to determine the orientation of the
-bone and the location of the femoral head.</p>
-<p>These are specific to paediatric femur models, if you do not have a paediatric femur model you should determine your 
-landmarks yourself and make sure the files are accessible for the program.</p>
-<p>If landmark files are present the program will not determine landmark points automatically.</p>
-<p>Landmark files should be in the same working directory as the <code>*.cdb</code> file you are using in a folder called <code>landmarks</code>.</p>
-<p>Landmark files should be in a plain text format with the following structure:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>x, y, z
-</span></code></pre></div>
-<p>or </p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>x
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>y
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>z
-</span></code></pre></div>
-<p>There should be a file for each landmark point. The files should be named as follows:</p>
-<ul>
-<li><code>RPOss.txt</code>: The proximal point of the bone.</li>
-<li><code>RDOss.txt</code>: The distal point of the bone.</li>
-<li><code>RMShaft.txt</code>: The center of mass of the bone.</li>
-</ul>
-<h4 id="calculation-for-the-length-of-the-bone">Calculation for the Length of the Bone</h4>
-<p>Purpose: Calculate the length of the bone by finding the maximum distance between vertices.</p>
-<p>Mathematical Operation:</p>
-<p>Let <span class="arithmatex">\(( \mathbf{v}_i )\)</span> be the vertices of the mesh.</p>
-<p>Find the farthest vertex <span class="arithmatex">\(\mathbf{v}_{\text{far}}\)</span> from an arbitrary starting vertex <span class="arithmatex">\(( \mathbf{v}_0 )\)</span>: </p>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{far}} = \arg\max{\mathbf{v}_i} |\mathbf{v}_0 - \mathbf{v}_i|
-\]</div>
-<p>Find the maximum distance from <span class="arithmatex">\(\mathbf{v}_{\text{far}}\)</span>: </p>
-<div class="arithmatex">\[
-\text{max distance} = \max{\mathbf{v}_i} |\mathbf{v}_{\text{far}} - \mathbf{v}_i|
-\]</div>
-<h4 id="extension-of-points-along-the-central-long-axis">Extension of Points Along the Central Long Axis</h4>
-<p>Purpose: Extend the distal and proximal points along the central axis by a given percentage of the bone length.</p>
-<p>Mathematical Operation:</p>
-<p>Calculate the central axis vector: </p>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{axis}} = \mathbf{v}_{\text{distal}} - \mathbf{v}_{\text{proximal}}
-\]</div>
-<p>Calculate the bone length <span class="arithmatex">\(L\)</span>: </p>
-<div class="arithmatex">\[
-L = \text{bone length}
-\]</div>
-<p>Calculate the extension length: </p>
-<div class="arithmatex">\[
-L_{\text{ext}} = L \times \left(\frac{\text{percentage}}{100}\right)
-\]</div>
-<p>Normalize the central axis vector: </p>
-<div class="arithmatex">\[
-\mathbf{d} = \frac{\mathbf{v}_{\text{axis}}}{L}
-\]</div>
-<p>Extend the distal and proximal points: </p>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{distal}} = \mathbf{v}_{\text{distal}} + \mathbf{d} \times L_{\text{ext}}
-\]</div>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{proximal}} = \mathbf{v}_{\text{proximal}} - \mathbf{d} \times L_{\text{ext}}
-\]</div>
-<h4 id="estimate-the-femoral-head-location">Estimate the Femoral Head Location</h4>
-<p>Purpose: Estimate the location of the femoral head based on the proximal, distal, and center of mass points.</p>
-<p>Mathematical Operation:</p>
-<p>Calculate the shaft axis: </p>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{shaft}} = \mathbf{v}_{\text{proximal}} - \mathbf{v}_{\text{distal}}
-\]</div>
-<p>Calculate the vector to the center of mass: </p>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{com}} = \mathbf{v}_{\text{com}} - \mathbf{v}_{\text{proximal}}
-\]</div>
-<p>Estimate the distance to the femoral head: </p>
-<div class="arithmatex">\[
-d_{\text{head}} = |\mathbf{v}_{\text{shaft}}| \times \left(\frac{\text{percentage}}{100}\right)
-\]</div>
-<p>Calculate a perpendicular vector: </p>
-<div class="arithmatex">\[
-\mathbf{v}_{\perp} = \mathbf{v}_{\text{shaft}} \times \mathbf{v}_{\text{com}}
-\]</div>
-<p>Calculate the direction to the femoral head: </p>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{head_dir}} = \mathbf{v}_{\perp} \times \mathbf{v}_{\text{shaft}}
-\]</div>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{head_dir_norm}} = \frac{\mathbf{v}_{\text{head_dir}}}{|\mathbf{v}_{\text{head_dir}}|}
-\]</div>
-<p>Estimate the femoral head location: </p>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{head}} = \mathbf{v}_{\text{proximal}} - \mathbf{v}_{\text{head_dir_norm}} \times d{_\text{head}}
-\]</div>
-<h4 id="find-the-long-shaft-axis-of-the-bone">Find the Long Shaft Axis of the Bone</h4>
-<p>Purpose: Find the long shaft axis of the bone and estimate the femoral head location.</p>
-<p>Mathematical Operation:
-Calculate the center of mass: </p>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{com}} = \frac{1}{N} \sum{i=1}^{N} \mathbf{v}_i
-\]</div>
-<p>Calculate the covariance matrix: </p>
-<div class="arithmatex">\[
-\mathbf{C} = \frac{1}{N-1} \sum_{i=1}^{N} (\mathbf{v}_i - \mathbf{v}_{\text{com}})(\mathbf{v}_i - \mathbf{v}_{\text{com}})^T
-\]</div>
-<p>Calculate the principal axes (eigenvectors): </p>
-<div class="arithmatex">\[
-\mathbf{C} \mathbf{e}_i = \lambda_i \mathbf{e}_i
-\]</div>
-<p>The shaft axis is the eigenvector with the largest eigenvalue: </p>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{shaft}} = \mathbf{e}{max}(\lambda)
-\]</div>
-<p>Project vertices onto the shaft axis: </p>
-<div class="arithmatex">\[
-\mathbf{p}_i = (\mathbf{v}_i - \mathbf{v}_{\text{com}}) \cdot \mathbf{v}_{\text{shaft}}
-\]</div>
-<p>Find the proximal and distal points: </p>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{proximal}} = \mathbf{v}_{min}(\mathbf{p}_i)
-\]</div>
-<div class="arithmatex">\[
-\mathbf{v}_{\text{distal}} = \mathbf{v}_{max}(\mathbf{p}_i)
-\]</div>
-<p>Estimate the femoral head location and extend points along the central axis as described above.</p>
-<h3 id="stl-checks">STL Checks</h3>
-<p>To try and ensure the quality of the STL file, the software will run a series of checks on the file before running the
-meshing script. These checks are not exhaustive, and you should check the file yourself. The checks are as follows:</p>
-<h4 id="check-non-manifold-edges">Check Non-manifold edges</h4>
-<p><em>Purpose:</em> Checks for edges shared by more than two faces, indicating non-manifold edges.  </p>
-<p><em>Description:</em> This function iterates through all the faces of the STL mesh and counts the occurrences of each edge. 
-Edges shared by more than two faces are considered non-manifold.  </p>
-<h4 id="check-multiple-bodies">Check Multiple Bodies</h4>
-<p><em>Purpose:</em> Checks for multiple bodies in the STL file by identifying unconnected components.  </p>
-<p><em>Description:</em> This function uses a depth-first search (DFS) algorithm to identify unconnected components in the mesh. 
-Each unconnected component is considered a separate body.  </p>
-<h4 id="check_non_uniform_scaling">check_non_uniform_scaling</h4>
-<p><em>Purpose:</em> Checks for non-uniform scaling in the STL mesh.</p>
-<p><em>Description:</em> This function calculates the bounding box of the mesh and checks if the dimensions 
-are uniformly scaled. Non-uniform scaling is detected if the dimensions are not proportional.  </p>
-<h4 id="check-for-faces-with-zero-area">Check for Faces with Zero Area</h4>
-<p><em>Purpose:</em> Checks for degenerate faces (faces with zero area).  </p>
-<p><em>Description:</em> This function iterates through all the faces of the STL mesh and calculates the area of each face. 
-Faces with zero area are considered degenerate.  </p>
-<h4 id="check-for-inverted-normals">Check for Inverted Normals</h4>
-<p><em>Purpose:</em> Checks if normals are consistently oriented.  </p>
-<p><em>Description:</em> This function calculates the center of the mesh and checks if the normals of the faces 
-generally point outward. A simple heuristic is used to determine the orientation of the normals.  </p>
-<h4 id="check-for-holes-in-the-mesh">Check for Holes in the Mesh</h4>
-<p><em>Purpose:</em> Checks for holes by ensuring each edge is shared by exactly two faces.  </p>
-<p><em>Description:</em> This function iterates through all the faces of the STL mesh and counts the occurrences of each edge. 
-Edges shared by only one face are considered holes.  </p>
-<h4 id="check-for-duplicate-vertices-and-faces">Check for Duplicate Vertices and Faces</h4>
-<p><em>Purpose:</em> Checks for duplicate vertices and faces.</p>
-<p><em>Description:</em> This function identifies and counts duplicate vertices and faces in the STL mesh.</p>
 
 
 
@@ -1173,13 +897,13 @@ Edges shared by only one face are considered holes.  </p>
         
         
           
-          <a href="customisation.html" class="md-footer__link md-footer__link--next" aria-label="Next: Customisation">
+          <a href="add-feats.html" class="md-footer__link md-footer__link--next" aria-label="Next: Additional Features">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Customisation
+                Additional Features
               </div>
             </div>
             <div class="md-footer__button md-icon">

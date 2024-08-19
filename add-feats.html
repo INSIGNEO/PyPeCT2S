@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="customisation.html">
+        <link rel="prev" href="usage.html">
       
       
-        <link rel="next" href="changelog.html">
+        <link rel="next" href="customisation.html">
       
       
       <link rel="icon" href="images/INSIGNEO.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Troubleshooting - PyPeCT2S</title>
+        <title>Additional Features - PyPeCT2S</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#troubleshooting" class="md-skip">
+        <a href="#additional-features" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Troubleshooting
+              Additional Features
             
           </span>
         </div>
@@ -328,10 +328,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="add-feats.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Additional Features
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="add-feats.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -340,6 +360,155 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#landmark-determination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Landmark Determination
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Landmark Determination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculation-for-the-length-of-the-bone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calculation for the Length of the Bone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-of-points-along-the-central-long-axis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension of Points Along the Central Long Axis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estimate-the-femoral-head-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estimate the Femoral Head Location
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-the-long-shaft-axis-of-the-bone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Find the Long Shaft Axis of the Bone
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stl-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      STL Checks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="STL Checks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-non-manifold-edges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Non-manifold edges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-multiple-bodies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Multiple Bodies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_non_uniform_scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      check_non_uniform_scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-for-faces-with-zero-area" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check for Faces with Zero Area
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-for-inverted-normals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check for Inverted Normals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-for-holes-in-the-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check for Holes in the Mesh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-for-duplicate-vertices-and-faces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check for Duplicate Vertices and Faces
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -368,30 +537,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Troubleshooting
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="troubleshooting.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="troubleshooting.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -400,158 +549,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#meshing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Meshing
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Meshing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ansys-apdl-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      ANSYS APDL Fails
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#unable-to-locate-filename-xxxxxxxxxxx" class="md-nav__link">
-    <span class="md-ellipsis">
-      Unable to locate filename XXXXXXXX.xxx
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#material-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      Material Application
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#finite-element-method" class="md-nav__link">
-    <span class="md-ellipsis">
-      Finite Element Method
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Finite Element Method">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#landmarks" class="md-nav__link">
-    <span class="md-ellipsis">
-      Landmarks
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ansys-apdl" class="md-nav__link">
-    <span class="md-ellipsis">
-      ANSYS APDL
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ANSYS APDL">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#general" class="md-nav__link">
-    <span class="md-ellipsis">
-      General
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#custom-scripts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Custom Scripts
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Custom Scripts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#general_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      General
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gui-crashes-freezes-or-errors-when-unfocused" class="md-nav__link">
-    <span class="md-ellipsis">
-      GUI Crashes, Freezes, or Errors when unfocused
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#issue-not-here" class="md-nav__link">
-    <span class="md-ellipsis">
-      Issue not here?
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -614,78 +611,158 @@
   
 
 
-<h1 id="troubleshooting">Troubleshooting</h1>
-<p>If you encounter any issues with the program, please try the following first:</p>
+<h1 id="additional-features">Additional Features</h1>
+<p>Below will be a list of additional features that are included in the software. But are not directly visible to users.</p>
+<h2 id="landmark-determination">Landmark Determination</h2>
+<p>These extra features are used to determine the landmarks of the bone. This is used to determine the orientation of the
+bone and the location of the femoral head.</p>
+<p>These are specific to paediatric femur models, if you do not have a paediatric femur model you should determine your 
+landmarks yourself and make sure the files are accessible for the program.</p>
+<p>If landmark files are present the program will not determine landmark points automatically.</p>
+<p>Landmark files should be in the same working directory as the <code>*.cdb</code> file you are using in a folder called <code>landmarks</code>.</p>
+<p>Landmark files should be in a plain text format with the following structure:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>x, y, z
+</span></code></pre></div>
+<p>or </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>x
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>y
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>z
+</span></code></pre></div>
+<p>There should be a file for each landmark point. The files should be named as follows:</p>
 <ul>
-<li>Ensure you have a licensed version of ANSYS available on your computer. You may require a VPN to be active.</li>
-<li>Ensure your version of ANSYS is 2021 or newer. ANSYS 2023R2 is the recommended version.</li>
-<li>Ensure you have launched both ANSYS ICEM and ANSYS APDL once before use.</li>
-<li>By default, all tabs except meshing are locked. If you require additional features contact the person who provided 
-the program to you.</li>
+<li><code>RPOss.txt</code>: The proximal point of the bone.</li>
+<li><code>RDOss.txt</code>: The distal point of the bone.</li>
+<li><code>RMShaft.txt</code>: The center of mass of the bone.</li>
 </ul>
-<p>Issues are known to occur more frequently with managed IT systems, so please ensure you have the correct permissions to
-run the software.</p>
-<h2 id="meshing">Meshing</h2>
-<p>If you're having trouble with Meshing failing, try the following:</p>
-<h3 id="ansys-apdl-fails">ANSYS APDL Fails</h3>
-<p>One of the most common causes for ANSYS APDL to fail at the meshing step is actual due to an issue in the ICEM section.</p>
-<p>Things to check for:</p>
-<ul>
-<li>STL integrity - Make sure your STL file is correct, not corrupted and has no visible issues.</li>
-<li>Mesh errors - Make sure you have gone over your mesh carefully and there are no errors like holes or broken surfaces.</li>
-</ul>
-<h3 id="unable-to-locate-filename-xxxxxxxxxxx">Unable to locate filename <code>XXXXXXXX.xxx</code></h3>
-<p>This problem is often related to the case of the filename. The program is case-sensitive, however windows is not when
-saving files. This means if there is alreadt a file with the same name but different case, the file will not save
-correctly and the program will not be able to locate it; as it is looking for the exact case.</p>
-<p>e.g. <code>filename.stl</code> and <code>FileName.stl</code> are two different files to the program. But windows will save them as the 
-same file. Giving preference to the exist file saved.</p>
-<h2 id="material-application">Material Application</h2>
-<p>If you're having trouble with your material application, try the following:</p>
-<ul>
-<li>Due to the automation steps to operate Bonemat seamlessly, model rotation is passed to an operation prior to meshing. 
-If you need this, please either complete the Bonemat step manually or repeat meshing with the Bonemat rotation 
-option selected. (See the <a href="usage.html#checkboxes">Checkboxes</a> section for more information.)</li>
-</ul>
-<h2 id="finite-element-method">Finite Element Method</h2>
-<h3 id="landmarks">Landmarks</h3>
-<p>If you're having trouble with landmarks, try the following:</p>
-<ul>
-<li>If you are not using paediatric femurs you must provide your own landmark files.<ul>
-<li>The current landmark system is designed for paediatric femurs only. </li>
-</ul>
-</li>
-<li>Ensure you have landmark files in the correct format, and they can be read by the program.</li>
-</ul>
-<h2 id="ansys-apdl">ANSYS APDL</h2>
-<h3 id="general">General</h3>
-<p>If you're having trouble with ANSYS APDL, try the following:</p>
-<ul>
-<li>Ensure you have the correct version of ANSYS installed.</li>
-<li>Make sure you have launched ANSYS APDL at least once before using the program.</li>
-<li>Check for any syntax errors in your script.</li>
-<li>Ensure you have the correct permissions to run the software.</li>
-<li>Check which license you have and if its compatible with the core count you are trying to use.</li>
-</ul>
-<h2 id="custom-scripts">Custom Scripts</h2>
-<h3 id="general_1">General</h3>
-<p>If you're having trouble with custom scripts, try the following:</p>
-<ul>
-<li>Ensure your script has the required functions: <code>get_name()</code> and <code>gui_elements()</code>.</li>
-<li>Check for any syntax errors in your script.</li>
-<li>Make sure the script is saved in the correct folder and the program has been restarted.</li>
-</ul>
-<h3 id="gui-crashes-freezes-or-errors-when-unfocused">GUI Crashes, Freezes, or Errors when unfocused</h3>
-<p>If you're experiencing GUI crashes, freezes, or errors when the program is unfocused, try the following:</p>
-<ul>
-<li>Check you are using the correct parent_widget in your script. This can cause issues if not set correctly.</li>
-<li>Ensure you have the correct slots and signals set up in your script.</li>
-<li>Check for any infinite loops in your script.</li>
-</ul>
-<h2 id="issue-not-here">Issue not here?</h2>
-<p>If you have tried the above and are still experiencing issues, please raise an issue on the repository. Or contact the
-person who provided the program to you or author directly. </p>
-<p><a href="index.html#contact">Contact</a>.</p>
+<h3 id="calculation-for-the-length-of-the-bone">Calculation for the Length of the Bone</h3>
+<p>Purpose: Calculate the length of the bone by finding the maximum distance between vertices.</p>
+<p>Mathematical Operation:</p>
+<p>Let <span class="arithmatex">\(( \mathbf{v}_i )\)</span> be the vertices of the mesh.</p>
+<p>Find the farthest vertex <span class="arithmatex">\(\mathbf{v}_{\text{far}}\)</span> from an arbitrary starting vertex <span class="arithmatex">\(( \mathbf{v}_0 )\)</span>: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{far}} = \arg\max{\mathbf{v}_i} |\mathbf{v}_0 - \mathbf{v}_i|
+\]</div>
+<p>Find the maximum distance from <span class="arithmatex">\(\mathbf{v}_{\text{far}}\)</span>: </p>
+<div class="arithmatex">\[
+\text{max distance} = \max{\mathbf{v}_i} |\mathbf{v}_{\text{far}} - \mathbf{v}_i|
+\]</div>
+<h3 id="extension-of-points-along-the-central-long-axis">Extension of Points Along the Central Long Axis</h3>
+<p>Purpose: Extend the distal and proximal points along the central axis by a given percentage of the bone length.</p>
+<p>Mathematical Operation:</p>
+<p>Calculate the central axis vector: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{axis}} = \mathbf{v}_{\text{distal}} - \mathbf{v}_{\text{proximal}}
+\]</div>
+<p>Calculate the bone length <span class="arithmatex">\(L\)</span>: </p>
+<div class="arithmatex">\[
+L = \text{bone length}
+\]</div>
+<p>Calculate the extension length: </p>
+<div class="arithmatex">\[
+L_{\text{ext}} = L \times \left(\frac{\text{percentage}}{100}\right)
+\]</div>
+<p>Normalize the central axis vector: </p>
+<div class="arithmatex">\[
+\mathbf{d} = \frac{\mathbf{v}_{\text{axis}}}{L}
+\]</div>
+<p>Extend the distal and proximal points: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{distal}} = \mathbf{v}_{\text{distal}} + \mathbf{d} \times L_{\text{ext}}
+\]</div>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{proximal}} = \mathbf{v}_{\text{proximal}} - \mathbf{d} \times L_{\text{ext}}
+\]</div>
+<h3 id="estimate-the-femoral-head-location">Estimate the Femoral Head Location</h3>
+<p>Purpose: Estimate the location of the femoral head based on the proximal, distal, and center of mass points.</p>
+<p>Mathematical Operation:</p>
+<p>Calculate the shaft axis: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{shaft}} = \mathbf{v}_{\text{proximal}} - \mathbf{v}_{\text{distal}}
+\]</div>
+<p>Calculate the vector to the center of mass: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{com}} = \mathbf{v}_{\text{com}} - \mathbf{v}_{\text{proximal}}
+\]</div>
+<p>Estimate the distance to the femoral head: </p>
+<div class="arithmatex">\[
+d_{\text{head}} = |\mathbf{v}_{\text{shaft}}| \times \left(\frac{\text{percentage}}{100}\right)
+\]</div>
+<p>Calculate a perpendicular vector: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\perp} = \mathbf{v}_{\text{shaft}} \times \mathbf{v}_{\text{com}}
+\]</div>
+<p>Calculate the direction to the femoral head: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{head_dir}} = \mathbf{v}_{\perp} \times \mathbf{v}_{\text{shaft}}
+\]</div>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{head_dir_norm}} = \frac{\mathbf{v}_{\text{head_dir}}}{|\mathbf{v}_{\text{head_dir}}|}
+\]</div>
+<p>Estimate the femoral head location: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{head}} = \mathbf{v}_{\text{proximal}} - \mathbf{v}_{\text{head_dir_norm}} \times d{_\text{head}}
+\]</div>
+<h3 id="find-the-long-shaft-axis-of-the-bone">Find the Long Shaft Axis of the Bone</h3>
+<p>Purpose: Find the long shaft axis of the bone and estimate the femoral head location.</p>
+<p>Mathematical Operation:
+Calculate the center of mass: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{com}} = \frac{1}{N} \sum{i=1}^{N} \mathbf{v}_i
+\]</div>
+<p>Calculate the covariance matrix: </p>
+<div class="arithmatex">\[
+\mathbf{C} = \frac{1}{N-1} \sum_{i=1}^{N} (\mathbf{v}_i - \mathbf{v}_{\text{com}})(\mathbf{v}_i - \mathbf{v}_{\text{com}})^T
+\]</div>
+<p>Calculate the principal axes (eigenvectors): </p>
+<div class="arithmatex">\[
+\mathbf{C} \mathbf{e}_i = \lambda_i \mathbf{e}_i
+\]</div>
+<p>The shaft axis is the eigenvector with the largest eigenvalue: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{shaft}} = \mathbf{e}{max}(\lambda)
+\]</div>
+<p>Project vertices onto the shaft axis: </p>
+<div class="arithmatex">\[
+\mathbf{p}_i = (\mathbf{v}_i - \mathbf{v}_{\text{com}}) \cdot \mathbf{v}_{\text{shaft}}
+\]</div>
+<p>Find the proximal and distal points: </p>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{proximal}} = \mathbf{v}_{min}(\mathbf{p}_i)
+\]</div>
+<div class="arithmatex">\[
+\mathbf{v}_{\text{distal}} = \mathbf{v}_{max}(\mathbf{p}_i)
+\]</div>
+<p>Estimate the femoral head location and extend points along the central axis as described above.</p>
+<h2 id="stl-checks">STL Checks</h2>
+<p>To try and ensure the quality of the STL file, the software will run a series of checks on the file before running the
+meshing script. These checks are not exhaustive, and you should check the file yourself. The checks are as follows:</p>
+<h3 id="check-non-manifold-edges">Check Non-manifold edges</h3>
+<p><em>Purpose:</em> Checks for edges shared by more than two faces, indicating non-manifold edges.  </p>
+<p><em>Description:</em> This function iterates through all the faces of the STL mesh and counts the occurrences of each edge. 
+Edges shared by more than two faces are considered non-manifold.  </p>
+<h3 id="check-multiple-bodies">Check Multiple Bodies</h3>
+<p><em>Purpose:</em> Checks for multiple bodies in the STL file by identifying unconnected components.  </p>
+<p><em>Description:</em> This function uses a depth-first search (DFS) algorithm to identify unconnected components in the mesh. 
+Each unconnected component is considered a separate body.  </p>
+<h3 id="check_non_uniform_scaling">check_non_uniform_scaling</h3>
+<p><em>Purpose:</em> Checks for non-uniform scaling in the STL mesh.</p>
+<p><em>Description:</em> This function calculates the bounding box of the mesh and checks if the dimensions 
+are uniformly scaled. Non-uniform scaling is detected if the dimensions are not proportional.  </p>
+<h3 id="check-for-faces-with-zero-area">Check for Faces with Zero Area</h3>
+<p><em>Purpose:</em> Checks for degenerate faces (faces with zero area).  </p>
+<p><em>Description:</em> This function iterates through all the faces of the STL mesh and calculates the area of each face. 
+Faces with zero area are considered degenerate.  </p>
+<h3 id="check-for-inverted-normals">Check for Inverted Normals</h3>
+<p><em>Purpose:</em> Checks if normals are consistently oriented.  </p>
+<p><em>Description:</em> This function calculates the center of the mesh and checks if the normals of the faces 
+generally point outward. A simple heuristic is used to determine the orientation of the normals.  </p>
+<h3 id="check-for-holes-in-the-mesh">Check for Holes in the Mesh</h3>
+<p><em>Purpose:</em> Checks for holes by ensuring each edge is shared by exactly two faces.  </p>
+<p><em>Description:</em> This function iterates through all the faces of the STL mesh and counts the occurrences of each edge. 
+Edges shared by only one face are considered holes.  </p>
+<h3 id="check-for-duplicate-vertices-and-faces">Check for Duplicate Vertices and Faces</h3>
+<p><em>Purpose:</em> Checks for duplicate vertices and faces.</p>
+<p><em>Description:</em> This function identifies and counts duplicate vertices and faces in the STL mesh.</p>
 
 
 
@@ -723,7 +800,7 @@ person who provided the program to you or author directly. </p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="customisation.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Customisation">
+          <a href="usage.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Usage">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
@@ -733,20 +810,20 @@ person who provided the program to you or author directly. </p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Customisation
+                Usage
               </div>
             </div>
           </a>
         
         
           
-          <a href="changelog.html" class="md-footer__link md-footer__link--next" aria-label="Next: Changelog">
+          <a href="customisation.html" class="md-footer__link md-footer__link--next" aria-label="Next: Customisation">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Changelog
+                Customisation
               </div>
             </div>
             <div class="md-footer__button md-icon">
