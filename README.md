@@ -63,6 +63,8 @@ If you use this software in your work, please cite the following: [CITATION](CIT
 Detailed documentation can be found in the project page or in the application itself under the `HELP` 
 link at the bottom. [Documentation](https://insigneo.github.io/PyPeCT2S/)
 
+If you find this software useful, please consider starring the repository.
+
 
 ## USAGE
 
