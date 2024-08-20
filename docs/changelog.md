@@ -1,5 +1,10 @@
 # Changelog:
 
+## 1.0.3
+
+- Fixed issue with log window; where if the window exceeded 1000 lines it would freeze the program until it was 
+restarted. Now it will remove lines from the top of the log window if it exceeds 1000 lines.
+
 ## 1.0.2
 
 - Fixed issue in meshing script where it would look for a temporary file that it did not need to unless certain

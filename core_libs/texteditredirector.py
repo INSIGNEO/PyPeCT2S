@@ -65,9 +65,11 @@ class TextEditRedirector:
             # Remove lines at the beginning if we have too many lines
             while self.log_text_edit.document().blockCount() > self.max_lines:
                 cursor.movePosition(QTextCursor.MoveOperation.Start)  # Move the cursor to the start of the text edit
-                cursor.select(QTextCursor.SelectionType.LineUnderCursor)  # Select the line under the cursor
+                cursor.select(QTextCursor.SelectionType.BlockUnderCursor)  # Select the line under the cursor
                 cursor.removeSelectedText()  # Remove the selected text
+                cursor.deleteChar()  # Ensure the block is completely removed
 
+            cursor.movePosition(QTextCursor.MoveOperation.End)
             self.log_text_edit.setTextCursor(cursor)  # Set the text
             self.log_text_edit.ensureCursorVisible()  # Ensure the cursor is visible
 
