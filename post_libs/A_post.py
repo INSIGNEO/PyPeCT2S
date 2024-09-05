@@ -166,14 +166,16 @@ def gui_elements():
     return gui_structure
 
 def calculate_moment_to_failure(strain1, strain3, esl_tension, esl_compression):
-    if var_ins.x_upper is None:
+    try:
         x_upper = np.loadtxt(f"{var_ins.working_dir}/output/x_upper.txt")
-    else:
-        x_upper = var_ins.x_upper
-    if var_ins.fx_upper is None:
+    except Exception as e:
+        x_upper = None
+        print(f"Error: {e}")
+    try:
         fx_upper = np.loadtxt(f"{var_ins.working_dir}/output/fx_upper.txt")
-    else:
-        fx_upper = var_ins.fx_upper
+    except Exception as e:
+        fx_upper = None
+        print(f"Error: {e}")
 
     max_e1_strain = np.max(strain1) / esl_tension
     max_e3_strain = -np.min(strain3) / esl_compression
@@ -181,12 +183,18 @@ def calculate_moment_to_failure(strain1, strain3, esl_tension, esl_compression):
     if max_e1_strain >= max_e3_strain:
         force_to_failure = var_ins.F * esl_tension / np.max(strain1)
         fail_type = "Tension"
-        moment_to_failure = (- force_to_failure * fx_upper / 1000) + (force_to_failure * x_upper / 1000)
+        if x_upper or fx_upper is not None:
+            moment_to_failure = (- force_to_failure * fx_upper / 1000) + (force_to_failure * x_upper / 1000)
+        else:
+            moment_to_failure = 0
         return force_to_failure, moment_to_failure, fail_type
     else:
         force_to_failure = var_ins.F * esl_compression / -np.min(strain3)
         fail_type = "Compression"
-        moment_to_failure = (- force_to_failure * fx_upper / 1000) + (force_to_failure * x_upper / 1000)
+        if x_upper or fx_upper is not None:
+            moment_to_failure = (- force_to_failure * fx_upper / 1000) + (force_to_failure * x_upper / 1000)
+        else:
+            moment_to_failure = 0
         return force_to_failure, moment_to_failure, fail_type
 
 
@@ -283,11 +291,17 @@ def ansys_pc_estrain():
 def result_max_csv():
     print("Compiling Strain Data...")
 
+    var_ins.force_to_failure = []
+    var_ins.moment_to_failure = []
+    var_ins.data = np.array([], dtype=var_ins.dt)
+
     var_ins.output_dir = core_libs.gui_funcs.dir_check_and_make("post processed results", gui_ins.save_path)
     res_dir = os.path.join(var_ins.working_dir, 'output')
 
     esl_tension = 0.0073  # 0.73% in tension | Elastic strain Limit Tension
     esl_compression = 0.0104  # 1.04% in compression | Elastic strain Limit Tension
+
+    stress_files = []
 
     stress_files = [f for f in os.listdir(res_dir) if f.startswith("pstress") and f.endswith(".dat")]
     print(f"Found {len(stress_files)} Stress Files")
@@ -309,6 +323,7 @@ def result_max_csv():
         strain3 = strain_data[:, 2]  # 1 - 1st principal strain, 2 - 3rd principal strain
 
         # Calculate force and moment to failure
+        force, moment, fail = None, None, None
         try:
             force, moment, fail = calculate_moment_to_failure(strain1, strain3, esl_tension, esl_compression)
         except Exception as e:
