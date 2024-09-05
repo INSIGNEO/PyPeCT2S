@@ -1,5 +1,10 @@
 # Changelog:
 
+## 1.0.4
+
+- Fixed issue with the post-processing script where it would not work if the user had attempted to run it more than
+once in the same session. This was due to the script not resetting the variables correctly.
+
 ## 1.0.3
 
 - Fixed issue with log window; where if the window exceeded 1000 lines it would freeze the program until it was 

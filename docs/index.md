@@ -28,6 +28,7 @@
 </p>
 
 <div style="text-align: center;" markdown>
+[:fontawesome-solid-download: __Download__](https://github.com/INSIGNEO/PyPeCT2S/releases/latest){ .md-button }
 [:fontawesome-brands-github: __GitHub__](https://github.com/INSIGNEO/PyPeCT2S){ .md-button }
 [:fontawesome-solid-envelope: __Contact__](mailto:GHAllison1@sheffield.ac.uk){ .md-button }
 [:material-license: __License__](https://github.com/INSIGNEO/PyPeCT2S/blob/main/LICENSE){ .md-button }
