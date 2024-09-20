@@ -180,14 +180,20 @@ def read_landmark_file(file_path, vari):
             # Format: x \n y \n z
             landmarks = np.array([list(map(float, lines[i:i + 3])) for i in range(0, len(lines), 3)])
 
+    landmarks = reshape_1d_array(landmarks)
+    landmarks = tuple(landmarks)
+
     # Assign landmarks to vari attributes based on file name
     file_name = os.path.basename(file_path)
     if file_name == 'RMShaft.txt':
         vari.middle = landmarks
+        np.savetxt(f"{vari.output_dir}/RMShaft.txt", vari.middle, delimiter=",", fmt='%.10f')
     elif file_name == 'RDOss.txt':
         vari.distal = landmarks
+        np.savetxt(f"{vari.output_dir}/RDOss.txt", vari.distal, delimiter=",", fmt='%.10f')
     elif file_name == 'RPOss.txt':
         vari.proximal = landmarks
+        np.savetxt(f"{vari.output_dir}/RPOss.txt", vari.proximal, delimiter=",", fmt='%.10f')
     else:
         raise ValueError(f"Unexpected file name: {file_name}")
 

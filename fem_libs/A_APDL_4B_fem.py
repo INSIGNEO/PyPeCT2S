@@ -470,7 +470,7 @@ def init_func(value, mapdl):
         z_min_upper = mapdl.get("z_min_upper", "node", "", "MNLOC",
                                 "z")  # Finds the minimum z value of the lower segment
         mapdl.nsel("r", "loc", "z", z_min_upper)  # Selects nodes within the lower segment
-        mapdl.d("all", "uz", 0)  # Fixes all degrees of freedom for sele
+        mapdl.d("all", "uz", 0)  # Fixes all degrees of freedom for selected nodes
 
     mapdl.allsel("all")  # Selects all nodes
 
