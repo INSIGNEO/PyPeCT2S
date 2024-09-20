@@ -4,6 +4,7 @@
 
 - Fixed issue with the post-processing script where it would not work if the user had attempted to run it more than
 once in the same session. This was due to the script not resetting the variables correctly.
+- Fixed issue with landmark functions where it would incorrectly read the landmarks and throw an array error.
 
 ## 1.0.3
 
