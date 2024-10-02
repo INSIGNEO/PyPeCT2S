@@ -68,7 +68,6 @@ def bone_length(mesh_data):
 
 
 def extend_points_along_central_axis(distal, proximal, percentage, mesh_data):
-    distal = reshape_1d_array(distal)
 
     # Calculate the vector from proximal to distal point
     central_axis_vector = np.array(distal) - np.array(proximal)
@@ -98,8 +97,8 @@ def extend_points_along_central_axis(distal, proximal, percentage, mesh_data):
 
 def estimate_femoral_head_location(proximal, distal, center_of_mass, percentage):
 
-    proximal = reshape_1d_array(proximal)
-    distal = reshape_1d_array(distal)
+    # proximal = reshape_1d_array(proximal)
+    # distal = reshape_1d_array(distal)
     center_of_mass = reshape_1d_array(center_of_mass)
 
     shaft_axis = np.array(proximal) - np.array(distal)
@@ -120,6 +119,15 @@ def estimate_femoral_head_location(proximal, distal, center_of_mass, percentage)
 
     # Calculate estimated femoral head location
     femoral_head_location = np.array(proximal) - direction_to_femoral_head_normalized * estimated_distance
+
+    # Ensure the movement is in the correct direction
+    if np.dot(femoral_head_location - np.array(proximal), shaft_axis) < 0:
+        femoral_head_location = np.array(proximal) + direction_to_femoral_head_normalized * estimated_distance
+
+    # Additional check to ensure the femoral head is in the anatomically correct direction
+    if femoral_head_location[2] < proximal[2]:
+        femoral_head_location = np.array(proximal) + direction_to_femoral_head_normalized * estimated_distance
+
 
     return femoral_head_location
 
@@ -144,17 +152,25 @@ def find_long_shaft_axis(vari, mesh_data):
     distal_point = vertices[np.argmax(projections)]
     middle_point = center_of_mass
 
-    # Estimate the location of the femoral head
-    try:
-        proximal_point = estimate_femoral_head_location(proximal_point, distal_point, middle_point, 5)
-    except Exception as e:
-        print(f"Error estimating femoral head location: {e}")
+    proximal_point = reshape_1d_array(proximal_point)
+    distal_point = reshape_1d_array(distal_point)
+
+    if proximal_point[2] < distal_point[2]:
+        proximal_point, distal_point = distal_point, proximal_point
+
 
     # Extend the distal and proximal points along the central axis
     try:
         distal_point, proximal_point = extend_points_along_central_axis(distal_point, proximal_point, 2, mesh_data)
     except Exception as e:
         print(f"Error estimating extended locations: {e}")
+
+    # Estimate the location of the femoral head
+    try:
+        proximal_point = estimate_femoral_head_location(proximal_point, distal_point, middle_point, 5)
+        # print("Nothing for now")
+    except Exception as e:
+        print(f"Error estimating femoral head location: {e}")
 
     # Get the x, y, and z coordinates of the distal, proximal, and middle points
     match gui_ins.bm_rot:
