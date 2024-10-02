@@ -70,7 +70,9 @@ If you find this software useful, please consider starring the repository.
 
 **_Please only run the scripts if you are comfortable running Python scripts._**
 
-It is recommended to use the latest release available under: [Releases](https://github.com/INSIGNEO/PyPeCT2S/releases/latest)
+Although the main branch is stable and generally contains fixes ahead of version releases. Unless you are comfortable 
+running Python scripts and or need particular fixes, it is recommended to use the latest release available under: 
+[Releases](https://github.com/INSIGNEO/PyPeCT2S/releases/latest)
 
 You can run each tab individually, or run the entire pipeline from the start. 
 (e.g. You may want to stop after the material assignment step and take that file to your own solving software. This is
