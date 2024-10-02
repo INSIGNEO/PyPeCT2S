@@ -150,9 +150,9 @@ def rpl_paths(stl_path):
     var_ins.icem_line_3_2 = f"{stl_path}"
     match var_ins.stl_type:
         case 'ASCII':
-            var_ins.icem_line_3_3 = f' "./tmpdomain0.uns"  -ascii -fam {var_ins.file_name}'
+            var_ins.icem_line_3_3 = f' "{gui_ins.save_path}/tmpdomain0.uns"  -ascii -fam FAM{var_ins.file_name}'
         case 'BINARY':
-            var_ins.icem_line_3_3 = f' "./tmpdomain0.uns"  -fam {var_ins.file_name}'
+            var_ins.icem_line_3_3 = f' "{gui_ins.save_path}/tmpdomain0.uns"  -fam FAM{var_ins.file_name}'
     var_ins.icem_line_3_4 = '}'
 
     var_ins.icem_line_23_0 = 'ic_uns_update_family_type visible {'
@@ -273,14 +273,14 @@ def update_icem_commands(stl_path):
         f'ic_file_is_ascii "{stl_path}"',
         f'{var_ins.icem_line_3_1}"{var_ins.icem_line_3_2}"{var_ins.icem_line_3_3}{var_ins.icem_line_3_4}',
         'ic_empty_tetin',
-        'ic_geo_import_mesh ./tmpdomain0.uns 1 1',
+        f'ic_geo_import_mesh {gui_ins.save_path}/tmpdomain0.uns 1 1',
         'ic_boco_solver',
         'ic_boco_clear_icons',
-        'ic_set_global geo_cad 0.05 toler',
+        'ic_set_global geo_cad 0.08 toler',
         f'ic_set_meshing_params global 0 gref 1.0 gmax {var_ins.max_element_size} gfast 0 gedgec 0.2 gnat 0 gcgap 1 gnatref 10',
-        'ic_set_meshing_params surface_global 0 mesh_type 0 mesh_method 1 simple_offset 0 bunch_respect 0 protect_line 0 bound_smooth 0 block_mapping 0.2 adjust_nodes_max 0.0 proj_surf 1 surf_sizes 0 ign_size 0.05 try_harder 1 impr_level 1 mesh_dormant 0 smooth_dormant 0 max_area 0.0 max_length 0.0 min_angle 0.0 max_nodes 0 max_elements 0 merge_surfs 1 mapped_method 1 free_bunch 0 shrinkwrap_nsmooth 5 shrinkwrap_projfactor 0.1 snorm 1 quadratic 0',
+        'ic_set_meshing_params surface_global 0 mesh_type 0 mesh_method 1 simple_offset 0 bunch_respect 0 protect_line 0 bound_smooth 0 block_mapping 0.2 adjust_nodes_max 0.0 proj_surf 1 surf_sizes 0 ign_size 0.08 try_harder 1 impr_level 1 mesh_dormant 0 smooth_dormant 0 max_area 0.0 max_length 0.0 min_angle 0.0 max_nodes 0 max_elements 0 merge_surfs 1 mapped_method 1 free_bunch 0 shrinkwrap_nsmooth 5 shrinkwrap_projfactor 0.1 snorm 1 quadratic 0',
         'ic_set_meshing_params global 0 gfast 0 gedgec 0.2',
-        'ic_set_global geo_cad 0.05 toler',
+        'ic_set_global geo_cad 0.08 toler',
         'ic_save_tetin temp_tetra.tin',
         'ic_run_tetra temp_tetra.tin ./tetra_mesh.uns run_cutter 1 delete_auto 1 run_smoother 0 fix_holes 1 n_processors 1 in_process 1 auto_vol 1 log ./tetra_cmd.log',
         'ic_geo_set_modified 1',
@@ -297,7 +297,6 @@ def update_icem_commands(stl_path):
         f'ic_chdir "{gui_ins.save_path}"',
         'ic_delete_empty_parts',
         f'{var_ins.icem_line_37_0}{var_ins.icem_line_37_1}{var_ins.icem_line_37_2}',
-        f'ic_rename {var_ins.proj_name}.uns {var_ins.proj_name}.uns.bak',
         'ic_uns_check_duplicate_numbers',
         'ic_uns_renumber_all_elements 1 1',
         f'{var_ins.icem_line_41_0}{var_ins.icem_line_41_1}{var_ins.icem_line_41_2}',
