@@ -41,7 +41,7 @@ gui_ins = core_libs.gui_vars.GuiVariables()
 
 
 def get_name():
-    return "ANSYS 4 Point Bending"
+    return "ANSYS 4-PB (Nodal Constraints)"
 
 
 def gui_elements():
