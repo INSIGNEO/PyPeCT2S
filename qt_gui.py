@@ -81,21 +81,25 @@ class MyApplication(QWidget):
 
         # Meshing Dropdown
         self.msh_dropdown = QComboBox()
+        self.msh_dropdown.setFixedWidth(160)
         self.msh_dropdown.currentIndexChanged.connect(lambda: self.load_script_content(self.msh_dropdown, "Meshing"))
         self.discover_scripts(self.msh_dropdown, "mesh")
 
         # Material Dropdown
         self.mat_dropdown = QComboBox()
+        self.mat_dropdown.setFixedWidth(160)
         self.mat_dropdown.currentIndexChanged.connect(lambda: self.load_script_content(self.mat_dropdown, "Material"))
         self.discover_scripts(self.mat_dropdown, "material")
 
         # FEM Dropdown
         self.fem_dropdown = QComboBox()
+        self.fem_dropdown.setFixedWidth(160)
         self.fem_dropdown.currentIndexChanged.connect(lambda: self.load_script_content(self.fem_dropdown, "FEM"))
         self.discover_scripts(self.fem_dropdown, "fem")
 
         # Results Dropdown
         self.res_dropdown = QComboBox()
+        self.res_dropdown.setFixedWidth(160)
         self.res_dropdown.currentIndexChanged.connect(lambda: self.load_script_content(self.res_dropdown, "Results"))
         self.discover_scripts(self.res_dropdown, "post")
 
@@ -291,6 +295,7 @@ class MyApplication(QWidget):
     def load_script_content(self, drop, group):
         index = drop.currentIndex()
         module = drop.itemData(index)
+
         if module and hasattr(module, 'gui_elements'):
             gui_structure = module.gui_elements()
 
@@ -304,6 +309,10 @@ class MyApplication(QWidget):
             # If the tab exists, clear its content and set new content
             if tab_index is not None:
                 try:
+                    # Remove the current widget in the tab
+                    current_widget = self.tab.widget(tab_index)
+                    if current_widget:
+                        current_widget.deleteLater()
                     # Create a new QWidget for the content
                     new_content_widget = QWidget()
                     # Use the build_layout function to construct the layout from the gui_structure
