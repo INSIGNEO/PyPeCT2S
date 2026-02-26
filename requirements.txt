@@ -33,7 +33,7 @@ numpy==1.26.4
 numpy-stl==3.1.1
 packaging==24.1
 pefile==2023.2.7
-pillow==10.4.0
+pillow==12.1.1
 platformdirs==4.2.2
 pooch==1.8.2
 proto-plus==1.24.0
