@@ -290,6 +290,7 @@ def ansys_pc_estrain():
 
 def result_max_csv():
     print("Compiling Strain Data...")
+    print(f"Working Directory: {var_ins.working_dir}")
 
     var_ins.force_to_failure = []
     var_ins.moment_to_failure = []
