@@ -91,19 +91,48 @@ Fill in blank fields and press button to run. Information will display in the lo
 >ANSYS scripts require a minimum ANSYS version (2021R2) to function correctly. 2023R2 and above is recommended, and the 
 > systems have been tested on 2021R2 up.
 
+### Material Assignment
+
+>[!NOTE]
+>We would recommend using LUMA for material assignment as it is a more flexible CLI tool.
+
+#### LUMA
+
+LUMA is a command line interface (CLI) tool for material assignment developed by the same group and person as this tool.
+It is available on [LUMA GitHub](https://github.com/HaivuUK/LUMA) or the [LUMA Website](https://luma.haivu.org).
+To use LUMA with PyPeCT2S, you will need to have a copy of LUMA available on your system path, which should happen with 
+the default installation of LUMA. If you have issues with this, 
+please raise an issue on the [LUMA GitHub](https://github.com/HaivuUK/LUMA).
+
+LUMA supports a wide range of CT image formats and can take translation commands from this GUI to control the 
+material assignment further.
+It also does not have a limit on file sizes like bonemat does and supports visualisation 
+and histogram generation of the material assignment process.
+
+#### Bonemat
+
 If you are looking to use automatic Bonemat-based material assignment, you will need to have the **_rolling_** version
 of [Bonemat](https://ior-bic.github.io/software/bonemat/) available on your system and copy the `BonematCLI.exe` in 
-to the Bonemat folder. We will not distribute a copy of Bonemat with is software.
+to the Bonemat folder. We will not distribute a copy of Bonemat with this software.
 
 Please keep in mind the limits of the software this GUI interfaces with. _We cannot solve issues that arise for errors 
 in software we do not control._ However, if you think there is an issue with the GUI, please raise an issue on the repo.
 
 ### Python Requirements
 
-- [See requirements file](requirements.txt)
+The python environment is managed using [UV](https://docs.astral.sh/uv/).
+Pleaes make sure you have UV installed and available on your system path.
 
-- Set up an environment as follows:
-  - `pip install -r requirements.txt`
+Once you have UV and git installed, you can create the PyPeCT2S environment using the following command:
+
+```bash
+git clone https://github.com/INSIGNEO/PyPeCT2S.git
+cd PyPeCT2S
+uv sync
+uv run PyPeCT2S
+```
+
+```bash
 
 ### File / Model / Input Requirements
 

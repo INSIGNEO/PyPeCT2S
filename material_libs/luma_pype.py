@@ -181,9 +181,16 @@ def auto_luma():
     # check that luma is installed and accessible on system path
     try:
         subprocess.run(["luma", "--version"], check=True, capture_output=True, text=True)
-    except subprocess.CalledProcessError as e:
-        print(f"Error: LUMA is not installed or not accessible on the system path.\nPlease install LUMA from https://luma.haivu.org and ensure it is in your PATH.\nDetails: {e.stderr}")
+    except FileNotFoundError:
+        print("Error: LUMA is not installed or not accessible on the system path.\nPlease install LUMA from https://luma.haivu.org and ensure it is in your PATH.")
         return
+    except PermissionError:
+        print("Error: Permission denied when trying to run LUMA.\nPlease check your permissions and ensure that LUMA is executable.")
+        return
+    except subprocess.CalledProcessError as e:
+        print(f"Error: LUMA was found, but `luma --version` failed: {e.stderr.strip()}")
+        return
+
     else:
         try:
             # Define the command and arguments
@@ -195,18 +202,18 @@ def auto_luma():
             mesh_arg = var_ins.mesh_path
             params_arg = var_ins.config_path
             if var_ins.visualise_output:
-                arg4 = "--visualise"
+                vis_arg = "--visualise"
             if var_ins.save_histogram:
-                arg5 = "--histogram"
+                hist_arg = "--histogram"
 
             # Run the subprocess
             match (var_ins.visualise_output, var_ins.save_histogram):
                 case (True, True):
-                    bone = subprocess.run([command, image_command, image_arg, mesh_command, mesh_arg, params_command, params_arg, arg4, arg5], capture_output=True, text=True)
+                    bone = subprocess.run([command, image_command, image_arg, mesh_command, mesh_arg, params_command, params_arg, vis_arg, hist_arg], capture_output=True, text=True)
                 case (True, False):
-                    bone = subprocess.run([command, image_command, image_arg, mesh_command, mesh_arg, params_command, params_arg, arg4], capture_output=True, text=True)
+                    bone = subprocess.run([command, image_command, image_arg, mesh_command, mesh_arg, params_command, params_arg, vis_arg], capture_output=True, text=True)
                 case (False, True):
-                    bone = subprocess.run([command, image_command, image_arg, mesh_command, mesh_arg, params_command, params_arg, arg5], capture_output=True, text=True)
+                    bone = subprocess.run([command, image_command, image_arg, mesh_command, mesh_arg, params_command, params_arg, hist_arg], capture_output=True, text=True)
                 case (False, False):
                     bone = subprocess.run([command, image_command, image_arg, mesh_command, mesh_arg, params_command, params_arg], capture_output=True, text=True)
             print(bone.stdout)
