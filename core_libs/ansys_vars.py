@@ -68,10 +68,11 @@ class FemVariables:
             self.mode = 1  # 1 - Four point bending | 2 - Torsion
             self.angle_inc = 10  # Increment for bone rotation about the x-axis [Set to 0 or 360 to calculate default orientation
             self.F = 120.00  # Compression force (N) [original script was at 120N]
+            self.M = 100.00  # Torsion moment (Nm)
             self.export_EX = 0  # 1 - Exporting EX values at mid-shaft
             self.pc = 0.5  # Percentage of remaining segment
             self.pf = 0.5  # Proportion of mid-segment where the force is applied
-            self.direc = 2  # external rotation direction
+            self.direc = "external"  # external rotation direction
             self.step = ""
             self.n = ""
             self.rad_inc = ""
@@ -104,6 +105,7 @@ class FemVariables:
             self.fname = ""
             self.output_dir = ""
             self.working_dir = ""
+            self.under_one_year = False
         else:
             # Initialize the instance variables with the values of initial_vars
             self.__dict__ = initial_vars.__dict__.copy()
@@ -129,6 +131,23 @@ class PostVariables:
                                 ('Max Compression', float), ('Compression Node', int), ('Fail Type', 'U11'),
                                 ('Force to Fail', float), ('Moment to Fail', float)])
             self.data = np.empty(0, dtype=self.dt)
+        else:
+            # Initialize the instance variables with the values of initial_vars
+            self.__dict__ = initial_vars.__dict__.copy()
+
+class SideVariables:
+    def __init__(self, initial_vars=None):
+        if initial_vars is None:
+            self.F = 1000.00  # force (N)
+            self.ant = False
+            self.lat = False
+            self.med = False
+            self.post = False
+            self.neut = False
+            self.is_left = False
+            self.knee_dat = False
+            self.ang_step = 10
+            self.ang_inp = ""
         else:
             # Initialize the instance variables with the values of initial_vars
             self.__dict__ = initial_vars.__dict__.copy()

@@ -27,7 +27,10 @@ ________________________________________________________________________________
 """
 
 import os
+from codecs import ignore_errors
+
 import numpy as np
+import time
 import glob
 from ansys.mapdl.core import launch_mapdl
 from PyQt6.QtWidgets import QApplication
@@ -282,7 +285,10 @@ def local_func(mapdl):
     mapdl.nsel("r", "ext")  # Selects external nodes
     mapdl.cm("distal", "node")  # Creates a component called Distal
 
-    xmin_distend = mapdl.get_value("node", "", "MNLOC", "x")  # Finds the minimum x value of the distal end
+    selected_nodes = mapdl.mesh.nnum
+    print(f"Selected nodes for distal end: {selected_nodes}")
+
+    xmax_distend = mapdl.get_value("node", "", "MXLOC", "x")  # Finds the minimum x value of the distal end
 
     ymax_distend = mapdl.get_value("node", "", "MXLOC", "y")  # Finds the maximum y value of the distal end
     ymin_distend = mapdl.get_value("node", "", "MNLOC", "y")  # Finds the minimum y value of the distal end
@@ -290,7 +296,7 @@ def local_func(mapdl):
     zmax_distend = mapdl.get_value("node", "", "MXLOC", "z")  # Finds the maximum z value of the distal end
     zmin_distend = mapdl.get_value("node", "", "MNLOC", "z")  # Finds the minimum z value of the distal end
 
-    xdistal = xmin_distend
+    xdistal = xmax_distend
     ydistal = (ymax_distend + ymin_distend) / 2
     zdistal = (zmax_distend + zmin_distend) / 2
 
@@ -664,6 +670,7 @@ def export_func(value, mapdl):
 
 
 def bending():
+    st_time = time.time()  # Start timer
     var_ins.output_dir = core_libs.gui_funcs.dir_check_and_make('output', gui_ins.save_path)  # Creates output directory
 
     landmarks_dir = os.path.join(var_ins.working_dir, 'landmarks')
@@ -678,7 +685,7 @@ def bending():
         core_libs.ldmk_funcs.find_landmarks(var_ins)
         print("Landmarks found using auto landmark function")
 
-    mapdl = launch_mapdl(nproc=gui_ins.core_count, additional_switches='-smp', loglevel="DEBUG", print_com=True,
+    mapdl = launch_mapdl(nproc=gui_ins.core_count, additional_switches='-smp', loglevel="WARNING", print_com=True,
                          cleanup_on_exit=True, timeout=1200)
     mapdl.clear()
     file_path = glob.glob(f"{var_ins.working_dir}/{var_ins.id}*")[0].replace("\\", "/")
@@ -737,3 +744,7 @@ def bending():
 
     mapdl.finish()
     mapdl.exit()
+    ed_time = time.time()
+    print(f"Total time taken: {ed_time - st_time:.2f} seconds")
+    with open(os.path.join(var_ins.output_dir, 'time.txt'), 'w') as f:
+        f.write(f"Total time taken: {ed_time - st_time:.2f} seconds\n")
