@@ -22,9 +22,9 @@ GUI Functions Library
 
 ________________________________________________________________________________________________________________
 """
-
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QApplication, QLabel, QPushButton, QLineEdit, QDoubleSpinBox, QSpinBox, QVBoxLayout, \
-    QHBoxLayout, QFileDialog, QComboBox, QCheckBox
+    QHBoxLayout, QFileDialog, QComboBox, QCheckBox, QSpacerItem
 import logging
 import numpy as np
 from concurrent.futures import ThreadPoolExecutor
@@ -120,7 +120,22 @@ def create_gui_element(element_info, signal_slots=None):
     element_type = element_info.get('type')
     match element_type:
         case 'QLabel':
-            return QLabel(element_info.get('text', ''))
+            label = QLabel(element_info.get('text', ''))
+            font_info = element_info.get('font', {})
+            if font_info:
+                font = QFont()
+                if 'family' in font_info:
+                    font.setFamily(font_info['family'])
+                if 'size' in font_info:
+                    font.setPointSize(font_info['size'])
+                if 'bold' in font_info:
+                    font.setBold(font_info['bold'])
+                if 'italic' in font_info:
+                    font.setItalic(font_info['italic'])
+                if 'underline' in font_info:
+                    font.setUnderline(font_info['underline'])
+                label.setFont(font)
+            return label
         case 'QPushButton':
             button = QPushButton(element_info.get('text', ''))
             button.setObjectName(element_info.get('obname', ''))
@@ -161,10 +176,20 @@ def create_gui_element(element_info, signal_slots=None):
             widget = QComboBox()
             widget.setObjectName(element_info.get('obname', ''))
             widget.addItem(element_info.get('placeholder', ''))
+            for item in element_info.get('items', []):
+                widget.addItem(item)
             if signal_slots and 'valueChanged' in signal_slots:
                 var_name, var_inst, slot_func = signal_slots['valueChanged']
                 widget.currentIndexChanged.connect(lambda value, vn=var_name, vi=var_inst: on_value_changed(value, vi, vn))
             return widget
+        case 'QCheckBox':
+            widget = QCheckBox(element_info.get('text', ''))
+            if signal_slots and 'stateChanged' in signal_slots:
+                var_name, var_inst, slot_func = signal_slots['stateChanged']
+                widget.stateChanged.connect(lambda state, vn=var_name, vi=var_inst: on_state_changed(state, vi, vn))
+            return widget
+        case 'QSpacerItem':
+            return QSpacerItem(element_info.get('width', 20), element_info.get('height', 20))
         case _:
             return None
 
@@ -180,6 +205,10 @@ def build_layout(layout_info):
         if 'type' in item and item['type'] in ['QVBoxLayout', 'QHBoxLayout']:
             # Recursive case: item is a layout
             layout.addLayout(build_layout(item))
+        elif item.get('type') == 'QSpacerItem':
+            # Handle QSpacerItem
+            spacer = QSpacerItem(item.get('width', 20), item.get('height', 20))
+            layout.addItem(spacer)
         else:
             # Base case: item is a widget
             signal_slots = item.get('slots')

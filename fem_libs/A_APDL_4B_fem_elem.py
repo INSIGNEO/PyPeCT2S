@@ -27,7 +27,10 @@ ________________________________________________________________________________
 """
 
 import os
+from codecs import ignore_errors
+
 import numpy as np
+import time
 import glob
 from ansys.mapdl.core import launch_mapdl
 from PyQt6.QtWidgets import QApplication
@@ -41,7 +44,7 @@ gui_ins = core_libs.gui_vars.GuiVariables()
 
 
 def get_name():
-    return "ANSYS 4-PB (Nodal Constraints)"
+    return "ANSYS 4-PB (Element Constraints)"
 
 
 def gui_elements():
@@ -282,7 +285,10 @@ def local_func(mapdl):
     mapdl.nsel("r", "ext")  # Selects external nodes
     mapdl.cm("distal", "node")  # Creates a component called Distal
 
-    xmin_distend = mapdl.get_value("node", "", "MNLOC", "x")  # Finds the minimum x value of the distal end
+    selected_nodes = mapdl.mesh.nnum
+    print(f"Selected nodes for distal end: {selected_nodes}")
+
+    xmax_distend = mapdl.get_value("node", "", "MXLOC", "x")  # Finds the minimum x value of the distal end
 
     ymax_distend = mapdl.get_value("node", "", "MXLOC", "y")  # Finds the maximum y value of the distal end
     ymin_distend = mapdl.get_value("node", "", "MNLOC", "y")  # Finds the minimum y value of the distal end
@@ -290,7 +296,7 @@ def local_func(mapdl):
     zmax_distend = mapdl.get_value("node", "", "MXLOC", "z")  # Finds the maximum z value of the distal end
     zmin_distend = mapdl.get_value("node", "", "MNLOC", "z")  # Finds the minimum z value of the distal end
 
-    xdistal = xmin_distend
+    xdistal = xmax_distend
     ydistal = (ymax_distend + ymin_distend) / 2
     zdistal = (zmax_distend + zmin_distend) / 2
 
@@ -384,7 +390,7 @@ def init_func(value, mapdl):
     mapdl.csys(var_ins.csys_num[value])  # Sets a local coordinate system as the active coordinate system.
     mapdl.dsys(var_ins.csys_num[value])  # displays a local coordinate system as the active coordinate system.
     mapdl.nrotat("all")  # Rotates all nodes to coincide with local coordinate system.
-    mapdl.allsel("all")  # Selects all nodes
+    mapdl.allsel("all")  # Selects all elements
 
     # Crop the bone and keep the mid-shaft section
     if value == 0:
@@ -416,7 +422,7 @@ def init_func(value, mapdl):
         mapdl.edele("all")  # Deletes selected elements
         mapdl.ndele("all")  # Deletes selected nodes
 
-        mapdl.allsel("all")  # Selects all nodes
+        mapdl.allsel("all")  # Selects all elements
 
     mapdl.finish()  # Exits pre-processing mode
 
@@ -428,51 +434,53 @@ def init_func(value, mapdl):
     if value > 0:
         mapdl.ddele("all")  # Deletes all displacement constraints
 
-    # Fix the nodes of the bone
+    # Fix the elements of the bone
     # Bending
     if var_ins.mode == 1:
+        # Select nodes within the upper segment
         mapdl.nsel("s", "loc", "x", var_ins.x_upper)  # Selects nodes within the upper segment
         mapdl.nsel("r", "ext")  # Selects external nodes
-
-        # Fix bottom node in all directions - from XSL 30-September-2013
+        
+        # Fix bottom element in all directions - from XSL 30-September-2013
         y_min_upper = mapdl.get_value("node", "", "MNLOC", "y")  # Finds the minimum y value of the upper segment
-        mapdl.nsel("r", "loc", "y", y_min_upper, y_min_upper + 0.05)  # Selects nodes within the upper segment
-        mapdl.d("all", "all", 0)  # Fixes all degrees of freedom for selected nodes
-
-        mapdl.allsel("all")  # Selects all nodes
-
+        mapdl.nsel("r", "loc", "y", y_min_upper, y_min_upper + 0.05)  # Refine node selection within the upper segment
+        mapdl.esln("s", 1)  # Select elements attached to the selected nodes
+        mapdl.d("all", "all", 0)  # Fixes all degrees of freedom for selected elements
+    
+        mapdl.allsel("all")  # Selects all elements
+    
         if var_ins.id != 'PM7':  # PM7 has kinky elements at the end with standard command.
             mapdl.nsel("s", "loc", "x", var_ins.x_lower)  # Selects nodes within the lower segment
             mapdl.nsel("r", "ext")  # Selects external nodes
         else:
             mapdl.nsel("s", "loc", "x", var_ins.x_lower + 0.3)  # Selects nodes within the lower segment
             mapdl.nsel("r", "ext")  # Selects external nodes
-
+    
         # Fix in y in lower x segment - XSL 30-September-2013
         y_min_lower = mapdl.get_value("node", "", "MNLOC", "y")  # Finds the minimum y value of the lower segment
-        mapdl.nsel("r", "loc", "y", y_min_lower, y_min_lower)  # Selects nodes within the lower segment
-        mapdl.d("all", "uy", 0)  # Fixes all degrees of freedom for selected nodes
-
-        mapdl.allsel("all")  # Selects all nodes
-
+        mapdl.nsel("r", "loc", "y", y_min_lower, y_min_lower)  # Refine node selection within the lower segment
+        mapdl.esln("s", 1)  # Select elements attached to the selected nodes
+        mapdl.d("all", "uy", 0)  # Fixes all degrees of freedom for selected elements
+    
+        mapdl.allsel("all")  # Selects all elements
+    
         # Fix in z in lower x segment - XSL 04-October-2013
-        mapdl.nsel("s", "loc", "x", var_ins.x_lower)  # Selects nodes within the lower segment
-        mapdl.nsel("r", "ext")  # Selects external nodes
+        mapdl.nsel("s", "loc", "x", var_ins.x_lower)  # Select nodes within the lower segment
         z_min_lower = mapdl.get_value("node", "", "MNLOC", "z")  # Finds the minimum z value of the lower segment
-        mapdl.nsel("r", "loc", "z", z_min_lower)  # Selects nodes within the lower segment
-        mapdl.d("all", "uz", 0)  # Fixes all degrees of freedom for selected nodes
-
-        mapdl.allsel("all")  # Selects all nodes
-
+        mapdl.nsel("r", "loc", "z", z_min_lower)  # Refine node selection within the lower segment
+        mapdl.esln("s", 1)  # Select elements attached to the selected nodes
+        mapdl.d("all", "uz", 0)  # Fixes all degrees of freedom for selected elements
+    
+        mapdl.allsel("all")  # Selects all elements
+    
         # Fix in z in upper x segment - XSL 07-October-2013
-        mapdl.nsel("s", "loc", "x", var_ins.x_upper)  # Selects nodes within the lower segment
-        mapdl.nsel("r", "ext")  # Selects external nodes
-        z_min_upper = mapdl.get("z_min_upper", "node", "", "MNLOC",
-                                "z")  # Finds the minimum z value of the lower segment
-        mapdl.nsel("r", "loc", "z", z_min_upper)  # Selects nodes within the lower segment
-        mapdl.d("all", "uz", 0)  # Fixes all degrees of freedom for selected nodes
-
-    mapdl.allsel("all")  # Selects all nodes
+        mapdl.nsel("s", "loc", "x", var_ins.x_upper)  # Select nodes within the upper segment
+        z_min_upper = mapdl.get_value("node", "", "MNLOC", "z")  # Finds the minimum z value of the upper segment
+        mapdl.nsel("r", "loc", "z", z_min_upper)  # Refine node selection within the upper segment
+        mapdl.esln("s", 1)  # Select elements attached to the selected nodes
+        mapdl.d("all", "uz", 0)  # Fixes all degrees of freedom for selected elements
+    
+    mapdl.allsel("all")  # Selects all elements
 
     # Apply force on top
     # Delete previous force constraints
@@ -483,7 +491,8 @@ def init_func(value, mapdl):
     if var_ins.mode == 1:
         # Upper x segment
 
-        mapdl.nsel("s", "loc", "x", var_ins.fx_upper - 1, var_ins.fx_upper + 1)  # Selects nodes within the upper segment
+        mapdl.nsel("s", "loc", "x", var_ins.fx_upper - 1,
+                   var_ins.fx_upper + 1)  # Selects nodes within the upper segment
 
         fy_max_upper = mapdl.get_value("node", "", "MXLOC", "y")  # Finds the maximum y value of the upper segment
         fy_min_upper = mapdl.get_value("node", "", "MNLOC", "y")  # Finds the minimum y value of the upper segment
@@ -502,7 +511,8 @@ def init_func(value, mapdl):
         if fnodenum_upper == 0:
             mapdl.f("all", "fy", "0")  # Apply force in the y direction to all nodes in the upper segment
         else:
-            mapdl.f("all", "fy", -var_ins.F / fnodenum_upper)  # Apply force in the y direction to all nodes in the upper segment
+            mapdl.f("all", "fy",
+                    -var_ins.F / fnodenum_upper)  # Apply force in the y direction to all nodes in the upper segment
 
         # Lower x segment
         mapdl.allsel("all")  # Selects all nodes
@@ -510,7 +520,8 @@ def init_func(value, mapdl):
         mapdl.csys(var_ins.csys_num[value])  # Sets a local coordinate system as the active coordinate system.
         mapdl.dsys(var_ins.csys_num[value])  # displays a local coordinate system as the active coordinate system.
 
-        mapdl.nsel("s", "loc", "x", var_ins.fx_lower - 1, var_ins.fx_lower + 1)  # Selects nodes within the lower segment
+        mapdl.nsel("s", "loc", "x", var_ins.fx_lower - 1,
+                   var_ins.fx_lower + 1)  # Selects nodes within the lower segment
         fy_max_lower = mapdl.get_value("node", "", "MXLOC", "y")  # Finds the maximum y value of the lower segment
         fy_min_lower = mapdl.get_value("node", "", "MNLOC", "y")  # Finds the minimum y value of the lower segment
         mapdl.nsel("r", "loc", "y", fy_max_lower - 0.5, fy_max_lower)  # Selects nodes within the lower segment
@@ -528,7 +539,8 @@ def init_func(value, mapdl):
         if fnodenum_lower == 0:
             mapdl.f("all", "fy", "0")  # Apply force in the y direction to all nodes in the upper segment
         else:
-            mapdl.f("all", "fy", -var_ins.F / fnodenum_lower)  # Apply force in the y direction to all nodes in the lower segment
+            mapdl.f("all", "fy",
+                    -var_ins.F / fnodenum_lower)  # Apply force in the y direction to all nodes in the lower segment
 
     mapdl.allsel("all")  # Selects all nodes
 
@@ -539,8 +551,10 @@ def init_func(value, mapdl):
         mapdl.csys(var_ins.csys_num[value])  # Sets a local coordinate system as the active coordinate system.
         mapdl.dsys(var_ins.csys_num[value])  # displays a local coordinate system as the active coordinate system.
 
-        max_node_number = mapdl.get("max_node_number", "node", "", "num", "maxd")  # Finds the maximum node number of the model
-        mapdl.esel("s", "cent", "x", var_ins.fx_lower + d_lower, var_ins.fx_upper - d_upper)  # Selects elements within the ROI
+        max_node_number = mapdl.get("max_node_number", "node", "", "num",
+                                    "maxd")  # Finds the maximum node number of the model
+        mapdl.esel("s", "cent", "x", var_ins.fx_lower + d_lower,
+                   var_ins.fx_upper - d_upper)  # Selects elements within the ROI
 
         # Select corner nodes associated with these elements. This excludes mid-side nodes.
         # Because stress/strain results are not saved at those nodes. Hence, cannot get them in post-processing.
@@ -557,10 +571,14 @@ def init_func(value, mapdl):
         var_ins.roi_node = np.zeros(int(var_ins.nodenum_roi))  # Initialises empty array for node numbers of ROI nodes
 
         # Define array to save pstrain and pstress results in export function
-        var_ins.pstrain1 = np.zeros(int(var_ins.nodenum_roi))  # Initialises empty array for pstrain1 results of ROI nodes
-        var_ins.pstrain3 = np.zeros(int(var_ins.nodenum_roi))  # Initialises empty array for pstrain3 results of ROI nodes
-        var_ins.pstress1 = np.zeros(int(var_ins.nodenum_roi))  # Initialises empty array for pstress1 results of ROI nodes
-        var_ins.pstress3 = np.zeros(int(var_ins.nodenum_roi))  # Initialises empty array for pstress3 results of ROI nodes
+        var_ins.pstrain1 = np.zeros(
+            int(var_ins.nodenum_roi))  # Initialises empty array for pstrain1 results of ROI nodes
+        var_ins.pstrain3 = np.zeros(
+            int(var_ins.nodenum_roi))  # Initialises empty array for pstrain3 results of ROI nodes
+        var_ins.pstress1 = np.zeros(
+            int(var_ins.nodenum_roi))  # Initialises empty array for pstress1 results of ROI nodes
+        var_ins.pstress3 = np.zeros(
+            int(var_ins.nodenum_roi))  # Initialises empty array for pstress3 results of ROI nodes
 
         node_list_coords = mapdl.mesh.nodes_in_current_CS
         # print(f"node_list_coord:{node_list_coords} ,length: {len(node_list_coords)}")
@@ -652,6 +670,7 @@ def export_func(value, mapdl):
 
 
 def bending():
+    st_time = time.time()  # Start timer
     var_ins.output_dir = core_libs.gui_funcs.dir_check_and_make('output', gui_ins.save_path)  # Creates output directory
 
     landmarks_dir = os.path.join(var_ins.working_dir, 'landmarks')
@@ -667,7 +686,7 @@ def bending():
         print("Landmarks found using auto landmark function")
 
     mapdl = launch_mapdl(nproc=gui_ins.core_count, additional_switches='-smp', loglevel="WARNING", print_com=True,
-                         cleanup_on_exit=True)
+                         cleanup_on_exit=True, timeout=1200)
     mapdl.clear()
     file_path = glob.glob(f"{var_ins.working_dir}/{var_ins.id}*")[0].replace("\\", "/")
     file, file_extension = os.path.splitext(file_path)
@@ -714,6 +733,7 @@ def bending():
         for i in range(var_ins.step):
             print(f"Running loop {i}")
             init_func(i, mapdl)
+            mapdl.show()
             if var_ins.manual != 1:
                 solve_func(i, mapdl)
                 export_func(i, mapdl)
@@ -724,3 +744,7 @@ def bending():
 
     mapdl.finish()
     mapdl.exit()
+    ed_time = time.time()
+    print(f"Total time taken: {ed_time - st_time:.2f} seconds")
+    with open(os.path.join(var_ins.output_dir, 'time.txt'), 'w') as f:
+        f.write(f"Total time taken: {ed_time - st_time:.2f} seconds\n")

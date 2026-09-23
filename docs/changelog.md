@@ -1,5 +1,11 @@
 # Changelog:
 
+## 1.0.5
+
+- Made corrections to the ICEM Meshing script to ensure its correct functionality with other input files. Along with
+general improvements that needed to be made.
+- Tweaks to the auto landmark scripts to make them more consistent.
+
 ## 1.0.4
 
 - Fixed issue with the post-processing script where it would not work if the user had attempted to run it more than

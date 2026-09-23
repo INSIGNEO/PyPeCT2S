@@ -68,7 +68,6 @@ def bone_length(mesh_data):
 
 
 def extend_points_along_central_axis(distal, proximal, percentage, mesh_data):
-    distal = reshape_1d_array(distal)
 
     # Calculate the vector from proximal to distal point
     central_axis_vector = np.array(distal) - np.array(proximal)
@@ -96,10 +95,10 @@ def extend_points_along_central_axis(distal, proximal, percentage, mesh_data):
     return distal_point, proximal_point
 
 
-def estimate_femoral_head_location(proximal, distal, center_of_mass, percentage):
+def estimate_femoral_head_location(proximal, distal, center_of_mass, mesh_data, percentage):
 
-    proximal = reshape_1d_array(proximal)
-    distal = reshape_1d_array(distal)
+    # proximal = reshape_1d_array(proximal)
+    # distal = reshape_1d_array(distal)
     center_of_mass = reshape_1d_array(center_of_mass)
 
     shaft_axis = np.array(proximal) - np.array(distal)
@@ -121,7 +120,61 @@ def estimate_femoral_head_location(proximal, distal, center_of_mass, percentage)
     # Calculate estimated femoral head location
     femoral_head_location = np.array(proximal) - direction_to_femoral_head_normalized * estimated_distance
 
+    # Ensure the movement is in the correct direction
+    if np.dot(femoral_head_location - np.array(proximal), shaft_axis) < 0:
+        femoral_head_location = np.array(proximal) + direction_to_femoral_head_normalized * estimated_distance
+
+    # Additional check to ensure the femoral head is in the anatomically correct direction
+    if femoral_head_location[2] < proximal[2]:
+        femoral_head_location = np.array(proximal) + direction_to_femoral_head_normalized * estimated_distance
+
     return femoral_head_location
+
+def correct_distal_landmark(distal, mesh_data, slice_offset=5):
+    vertices = mesh_data.vectors.reshape(-1, 3)
+
+    # Find the distal end by identifying the minimum z-coordinate
+    distal_z = np.min(vertices[:, 2])
+
+    # Adjust the distal_z to be a few slices above the minimum
+    unique_z_values = np.unique(vertices[:, 2])
+    if len(unique_z_values) > slice_offset:
+        distal_z = unique_z_values[slice_offset]
+
+    # Filter vertices that are close to the distal end
+    tolerance = 1e-3  # Adjust tolerance as needed
+    distal_vertices = vertices[np.abs(vertices[:, 2] - distal_z) < tolerance]
+
+    # Calculate the centroid of the distal vertices
+    centroid = np.mean(distal_vertices, axis=0)
+
+    # Calculate the covariance matrix and its eigenvalues and eigenvectors
+    cov_matrix = np.cov(distal_vertices - centroid, rowvar=False)
+    eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+
+    # Align the distal vertices with the principal axes
+    rotation_matrix = eigenvectors.T
+    aligned_vertices = (distal_vertices - centroid) @ rotation_matrix.T
+
+    # Calculate the bounding box of the aligned distal vertices
+    min_coords = np.min(aligned_vertices, axis=0)
+    max_coords = np.max(aligned_vertices, axis=0)
+
+    # Calculate the midpoints of the bounding box edges at the distal end
+    midpoint_left_right = (min_coords[0] + max_coords[0]) / 2
+    midpoint_front_back = (min_coords[1] + max_coords[1]) / 2
+    distal_z = min_coords[2]  # Assuming the distal end is at the minimum z-coordinate
+
+    # Calculate the intersection point in the aligned coordinate system
+    intersection_point_aligned = np.array([midpoint_left_right, midpoint_front_back, distal_z])
+
+    # Transform the intersection point back to the original coordinate system
+    intersection_point = intersection_point_aligned @ rotation_matrix + centroid
+
+    # Correct the distal landmark
+    corrected_distal = (intersection_point + distal) / 2
+
+    return corrected_distal
 
 
 def find_long_shaft_axis(vari, mesh_data):
@@ -144,17 +197,30 @@ def find_long_shaft_axis(vari, mesh_data):
     distal_point = vertices[np.argmax(projections)]
     middle_point = center_of_mass
 
-    # Estimate the location of the femoral head
+    proximal_point = reshape_1d_array(proximal_point)
+    distal_point = reshape_1d_array(distal_point)
+
+    if proximal_point[2] < distal_point[2]:
+        proximal_point, distal_point = distal_point, proximal_point
+
+    # Correct the distal landmark
     try:
-        proximal_point = estimate_femoral_head_location(proximal_point, distal_point, middle_point, 5)
+        distal_point = correct_distal_landmark(distal_point, mesh_data, 5)
     except Exception as e:
-        print(f"Error estimating femoral head location: {e}")
+        print(f"Error correcting distal landmark: {e}")
 
     # Extend the distal and proximal points along the central axis
     try:
         distal_point, proximal_point = extend_points_along_central_axis(distal_point, proximal_point, 2, mesh_data)
     except Exception as e:
         print(f"Error estimating extended locations: {e}")
+
+    # Estimate the location of the femoral head
+    try:
+        proximal_point = estimate_femoral_head_location(proximal_point, distal_point, middle_point, mesh_data,5)
+        # print("Nothing for now")
+    except Exception as e:
+        print(f"Error estimating femoral head location: {e}")
 
     # Get the x, y, and z coordinates of the distal, proximal, and middle points
     match gui_ins.bm_rot:
