@@ -46,11 +46,13 @@ from PyQt6.QtGui import QPalette, QColor, QTextCursor, QIcon, QPixmap, QGuiAppli
 from PyQt6.QtCore import QCoreApplication, pyqtSlot, QRunnable, QThreadPool, QMutex, QThread, Qt, QTimer
 from PyQt6.QtSvg import QSvgGenerator
 
-
-if __name__ == '__main__':
+def main():
     app = QApplication(sys.argv)
     ex = MyApplication()
     app.main_window = ex
     ex.init_ui()
     ex.show()
     sys.exit(app.exec())
+
+if __name__ == '__main__':
+    raise SystemExit(main())

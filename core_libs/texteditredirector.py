@@ -75,3 +75,6 @@ class TextEditRedirector:
 
     def flush(self):
         self.stream.flush()  # Flush the stream
+
+    def isatty(self):
+        return getattr(self.stream, "isatty", lambda: False)()

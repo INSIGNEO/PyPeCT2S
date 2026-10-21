@@ -32,3 +32,14 @@ class BMatVariables:
         else:
             # Initialize the instance variables with the values of initial_vars
             self.__dict__ = initial_vars.__dict__.copy()
+
+class LUMAVariables:
+    def __init__(self, initial_vars=None):
+        if initial_vars is None:
+            self.mesh_path = ""  # Path to your fem mesh file
+            self.image_path = "" # Path to your image file
+            self.config_path = "" # Path to your TOML config file
+            self.visualise_output = False # Flag to indicate whether to visualise the image or not
+            self.save_histogram = False # Flag to indicate whether to generate histogram or not
+        else:
+            self.__dict__ = initial_vars.__dict__.copy()
