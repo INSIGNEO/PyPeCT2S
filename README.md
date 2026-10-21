@@ -36,7 +36,7 @@
 **Authors:** George H Allison<sup>1,2</sup>
 
 **Affiliation:** 
-<sup>1</sup> [INSIGNEO Institute, University of Sheffield, United Kingdom](https://www.sheffield.ac.uk/insigneo); 
+<sup>1</sup> [Insigneo Institute for Healthcare Technology, University of Sheffield, United Kingdom](https://www.sheffield.ac.uk/insigneo); 
 <sup>2</sup> [School of Mechanical, Aerospace & Civil Engineering, University of Sheffield, United Kingdom](https://www.sheffield.ac.uk/mecheng)
 
 **Contact:** 
@@ -45,7 +45,7 @@ Dr X. Li ([Email](mailto:xinshan.li@sheffield.ac.uk))
 
 ## INTRODUCTION
 
-This work uses techniques and tools developed by the [INSIGNEO Institute](https://www.sheffield.ac.uk/insigneo) for the [CT2S](https://ct2s.insigneo.org/ct2s/) pipeline.
+This work uses techniques and tools developed by the [Insigneo Institute for Healthcare Technology](https://www.sheffield.ac.uk/insigneo) for the [CT2S](https://ct2s.insigneo.org/ct2s/) pipeline.
 
 The goal of this work is to automate the [CT2S](https://ct2s.insigneo.org/ct2s/) pipeline steps, to use them in a modern setting in a repeatable and
 user-friendly manner; with high adaptability and extensibility.
